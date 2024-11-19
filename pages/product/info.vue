@@ -8,43 +8,61 @@
                 <p>Кухня из акрила</p>
             </div>
 
-            
+            <div class="product__info">
+                <div class="product__slider">
+                    <swiper :direction="'vertical'" :spaceBetween="10" :slidesPerView="4" :loop="true"
+                        :loopedSlides="50" :modules="modules" class="gallery-thumbs" :slideToClickedSlide="true"
+                        @swiper="setThumbsSwiper">
+                        <swiper-slide>
+                            <img src="@/assets/img/kuhnya.svg" />
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/kuhnya.svg" />
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/kuhnya.svg" />
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/kuhnya.svg" />
+                        </swiper-slide>
+                    </swiper>
 
-            <div class="product__slider">
-                <swiper :direction="'vertical'" :spaceBetween="10" :slidesPerView="4" :loop="true" :loopedSlides="50"
-                    :modules="modules" class="gallery-thumbs" :slideToClickedSlide="true" @swiper="setThumbsSwiper">
-                    <swiper-slide>
-                        <img src="@/assets/img/kuhnya.svg" />
-                    </swiper-slide>
-                    <swiper-slide>
-                        <img src="@/assets/img/kuhnya.svg" />
-                    </swiper-slide>
-                    <swiper-slide>
-                        <img src="@/assets/img/kuhnya.svg" />
-                    </swiper-slide>
-                    <swiper-slide>
-                        <img src="@/assets/img/kuhnya.svg" />
-                    </swiper-slide>
-                </swiper>
+                    <swiper :slidesPerView="1" :navigation="true" :loop="true" :modules="modules" class="gallery-top"
+                        :thumbs="{ swiper: thumbsSwiper }">
+                        <swiper-slide>
+                            <img src="@/assets/img/kuhnya.svg" />
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/kuhnya.svg" />
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/kuhnya.svg" />
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/kuhnya.svg" />
+                        </swiper-slide>
+                    </swiper>
+                </div>
 
-                <swiper :slidesPerView="1" :navigation="true" :loop="true" :modules="modules" class="gallery-top"
-                    :thumbs="{ swiper: thumbsSwiper }">
-                    <swiper-slide>
-                        <img src="@/assets/img/kuhnya.svg" />
-                    </swiper-slide>
-                    <swiper-slide>
-                        <img src="@/assets/img/kuhnya.svg" />
-                    </swiper-slide>
-                    <swiper-slide>
-                        <img src="@/assets/img/kuhnya.svg" />
-                    </swiper-slide>
-                    <swiper-slide>
-                        <img src="@/assets/img/kuhnya.svg" />
-                    </swiper-slide>
-                </swiper>
+                <div class="product__text">
+                    <p>Кухня из акрила</p>
+                    <div>
+                        <span>
+                            Этот кухонный гарнитур сочетает в себе современный стиль и функциональность, предлагая
+                            идеальное решение для вашего дома. Чистые линии, минималистичный дизайн и высококачественные
+                            материалы делают его не только эстетичным, но и практичным.  
+                        </span>
+                        <span>
+                            Множество удобных ящиков и полок обеспечат вам простор для хранения всех необходимых
+                            кухонных принадлежностей. Рабочие поверхности выполнены из прочных материалов, устойчивых
+                            к повреждениям и воздействию влаги. Эргономичные ручки и продуманная организация
+                            пространства делают использование гарнитура удобным и приятным.
+                            Идеально подходит для тех, кто ценит комфорт, стиль и качество в кухонной зоне.
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
 </template>
 
@@ -106,6 +124,32 @@ export default {
             font-size: 16px;
             line-height: 130%;
             color: rgba(0, 0, 0, 0.6);
+        }
+    }
+
+    &__info {
+        display: flex;
+        gap: 20px;
+    }
+
+    &__text {
+        background: #fff;
+        border-radius: 7px;
+        height: 628px;
+
+        p {
+            font-family: var(--geo);
+            font-weight: 400;
+            font-size: 32px;
+            line-height: 130%;
+            text-align: center;
+            color: #1e1e1e;
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
     }
 
