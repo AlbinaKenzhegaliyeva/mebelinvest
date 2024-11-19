@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Geologica';
+    src: url('/fonts/Geologica.ttf') format('opentype');
+}
+
+:root {
+    --geo: 'Geologica', sans-serif;
+}
+
+body {
+    margin: 0;
+}
