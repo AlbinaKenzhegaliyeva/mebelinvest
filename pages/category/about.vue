@@ -2,7 +2,7 @@
     <div class="page">
         <TheHeader />
         <div class="banner">
-            <h1>Широкий выбор мебели на заказ</h1>
+            <h1>Кухни</h1>
         </div>
         <div class="category">
             <h2>Категории</h2>
@@ -69,7 +69,6 @@
 
         <div class="furniture">
             <div class="furniture__list">
-
                 <div class="furniture-item" @click="openProduct">
                     <swiper :pagination="{ clickable: true, }" :modules="modules" class="mySwiper2">
                         <swiper-slide>
@@ -77,11 +76,13 @@
                             <div class="furniture-item__name">
                                 Кухни
                             </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/pic1.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Кухни
+                            <p>Кухонный гарнитур</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
                             </div>
                         </swiper-slide>
                         <swiper-slide>
@@ -89,16 +90,29 @@
                             <div class="furniture-item__name">
                                 Кухни
                             </div>
-                        </swiper-slide>
-                        <p>Кухонный гарнитур</p>
-                        <div class="furniture-item__price">
-                            <span>500 000 ₸</span>
-                            <div>
-                                <img src="@/assets/img/money.svg" alt="money">
-                                <span>Цена на 2023 год</span>
+                            <p>Кухонный гарнитур</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
                             </div>
-                        </div>
-                        <button>Подробнее</button>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/pic1.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Кухни
+                            </div>
+                            <p>Кухонный гарнитур</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
                     </swiper>
                 </div>
 
@@ -109,11 +123,13 @@
                             <div class="furniture-item__name">
                                 Гостиные
                             </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/pic2.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Гостиные
+                            <p>Угловой диван с подушками</p>
+                            <div class="furniture-item__price">
+                                <span>1 000 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2024 год</span>
+                                </div>
                             </div>
                         </swiper-slide>
                         <swiper-slide>
@@ -121,114 +137,13 @@
                             <div class="furniture-item__name">
                                 Гостиные
                             </div>
-                        </swiper-slide>
-                        <p>Угловой диван с подушками</p>
-                        <div class="furniture-item__price">
-                            <span>1 000 000 ₸</span>
-                            <div>
-                                <img src="@/assets/img/money.svg" alt="money">
-                                <span>Цена на 2024 год</span>
-                            </div>
-                        </div>
-                        <button>Подробнее</button>
-                    </swiper>
-                </div>
-
-                <div class="furniture-item">
-                    <swiper :pagination="{ clickable: true, }" :modules="modules" class="mySwiper2">
-                        <swiper-slide>
-                            <img src="@/assets/img/pic3.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Гостиные
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/pic3.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Гостиные </div>
-                        </swiper-slide>
-                        <p>Мягкое кресло на ножках</p>
-                        <div class="furniture-item__price">
-                            <span>500 000 ₸</span>
-                            <div>
-                                <img src="@/assets/img/money.svg" alt="money">
-                                <span>Цена на 2023 год</span>
-                            </div>
-                        </div>
-                        <button>Подробнее</button>
-                    </swiper>
-                </div>
-
-                <div class="furniture-item">
-                    <swiper :pagination="{ clickable: true, }" :modules="modules" class="mySwiper2">
-                        <swiper-slide>
-                            <img src="@/assets/img/pic4.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Кухни
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/pic4.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Кухни
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/pic4.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Кухни
-                            </div>
-                        </swiper-slide>
-                        <p>Кухонный набор стол + стулья</p>
-                        <div class="furniture-item__price">
-                            <span>500 000 ₸</span>
-                            <div>
-                                <img src="@/assets/img/money.svg" alt="money">
-                                <span>Цена на 2023 год</span>
-                            </div>
-                        </div>
-                        <button>Подробнее</button>
-                    </swiper>
-                </div>
-
-                <div class="furniture-item" @click="openProduct">
-                    <swiper :pagination="{ clickable: true, }" :modules="modules" class="mySwiper2">
-                        <swiper-slide>
-                            <img src="@/assets/img/pic1.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Кухни
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/pic1.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Кухни
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/pic1.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Кухни
-                            </div>
-                        </swiper-slide>
-                        <p>Кухонный гарнитур</p>
-                        <div class="furniture-item__price">
-                            <span>500 000 ₸</span>
-                            <div>
-                                <img src="@/assets/img/money.svg" alt="money">
-                                <span>Цена на 2023 год</span>
-                            </div>
-                        </div>
-                        <button>Подробнее</button>
-                    </swiper>
-                </div>
-
-                <div class="furniture-item">
-                    <swiper :pagination="{ clickable: true, }" :modules="modules" class="mySwiper2">
-                        <swiper-slide>
-                            <img src="@/assets/img/pic2.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Гостиные
+                            <p>Угловой диван с подушками</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2024 год</span>
+                                </div>
                             </div>
                         </swiper-slide>
                         <swiper-slide>
@@ -236,22 +151,15 @@
                             <div class="furniture-item__name">
                                 Гостиные
                             </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/pic2.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Гостиные
+                            <p>Угловой диван с подушками</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
                             </div>
                         </swiper-slide>
-                        <p>Угловой диван с подушками</p>
-                        <div class="furniture-item__price">
-                            <span>1 000 000 ₸</span>
-                            <div>
-                                <img src="@/assets/img/money.svg" alt="money">
-                                <span>Цена на 2024 год</span>
-                            </div>
-                        </div>
-                        <button>Подробнее</button>
                     </swiper>
                 </div>
 
@@ -261,22 +169,29 @@
                             <img src="@/assets/img/pic3.svg" alt="category" class="category-img">
                             <div class="furniture-item__name">
                                 Гостиные
+                            </div>
+                            <p>Мягкое кресло на ножках</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
                             </div>
                         </swiper-slide>
                         <swiper-slide>
                             <img src="@/assets/img/pic3.svg" alt="category" class="category-img">
                             <div class="furniture-item__name">
                                 Гостиные </div>
-                        </swiper-slide>
-                        <p>Мягкое кресло на ножках</p>
-                        <div class="furniture-item__price">
-                            <span>500 000 ₸</span>
-                            <div>
-                                <img src="@/assets/img/money.svg" alt="money">
-                                <span>Цена на 2023 год</span>
+                            <p>Мягкое кресло на ножках</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
                             </div>
-                        </div>
-                        <button>Подробнее</button>
+                        </swiper-slide>
                     </swiper>
                 </div>
 
@@ -287,11 +202,13 @@
                             <div class="furniture-item__name">
                                 Кухни
                             </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/pic4.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Кухни
+                            <p>Кухонный набор стол + стулья</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
                             </div>
                         </swiper-slide>
                         <swiper-slide>
@@ -299,32 +216,46 @@
                             <div class="furniture-item__name">
                                 Кухни
                             </div>
-                        </swiper-slide>
-                        <p>Кухонный набор стол + стулья</p>
-                        <div class="furniture-item__price">
-                            <span>500 000 ₸</span>
-                            <div>
-                                <img src="@/assets/img/money.svg" alt="money">
-                                <span>Цена на 2023 год</span>
+                            <p>Кухонный набор стол + стулья</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
                             </div>
-                        </div>
-                        <button>Подробнее</button>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/pic4.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Кухни
+                            </div>
+                            <p>Кухонный набор стол + стулья</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
                     </swiper>
                 </div>
 
-
-                <div class="furniture-item" @click="openProduct">
+                <div class="furniture-item">
                     <swiper :pagination="{ clickable: true, }" :modules="modules" class="mySwiper2">
                         <swiper-slide>
                             <img src="@/assets/img/pic1.svg" alt="category" class="category-img">
                             <div class="furniture-item__name">
                                 Кухни
                             </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/pic1.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Кухни
+                            <p>Кухонный гарнитур</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
                             </div>
                         </swiper-slide>
                         <swiper-slide>
@@ -332,16 +263,29 @@
                             <div class="furniture-item__name">
                                 Кухни
                             </div>
-                        </swiper-slide>
-                        <p>Кухонный гарнитур</p>
-                        <div class="furniture-item__price">
-                            <span>500 000 ₸</span>
-                            <div>
-                                <img src="@/assets/img/money.svg" alt="money">
-                                <span>Цена на 2023 год</span>
+                            <p>Кухонный гарнитур</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
                             </div>
-                        </div>
-                        <button>Подробнее</button>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/pic1.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Кухни
+                            </div>
+                            <p>Кухонный гарнитур</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
                     </swiper>
                 </div>
 
@@ -352,11 +296,13 @@
                             <div class="furniture-item__name">
                                 Гостиные
                             </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/pic2.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Гостиные
+                            <p>Угловой диван с подушками</p>
+                            <div class="furniture-item__price">
+                                <span>1 000 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2024 год</span>
+                                </div>
                             </div>
                         </swiper-slide>
                         <swiper-slide>
@@ -364,116 +310,13 @@
                             <div class="furniture-item__name">
                                 Гостиные
                             </div>
-                        </swiper-slide>
-                        <p>Угловой диван с подушками</p>
-                        <div class="furniture-item__price">
-                            <span>1 000 000 ₸</span>
-                            <div>
-                                <img src="@/assets/img/money.svg" alt="money">
-                                <span>Цена на 2024 год</span>
-                            </div>
-                        </div>
-                        <button>Подробнее</button>
-                    </swiper>
-                </div>
-
-                <div class="furniture-item">
-                    <swiper :pagination="{ clickable: true, }" :modules="modules" class="mySwiper2">
-                        <swiper-slide>
-                            <img src="@/assets/img/pic3.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Гостиные
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/pic3.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Гостиные </div>
-                        </swiper-slide>
-                        <p>Мягкое кресло на ножках</p>
-                        <div class="furniture-item__price">
-                            <span>500 000 ₸</span>
-                            <div>
-                                <img src="@/assets/img/money.svg" alt="money">
-                                <span>Цена на 2023 год</span>
-                            </div>
-                        </div>
-                        <button>Подробнее</button>
-                    </swiper>
-                </div>
-
-                <div class="furniture-item">
-                    <swiper :pagination="{ clickable: true, }" :modules="modules" class="mySwiper2">
-                        <swiper-slide>
-                            <img src="@/assets/img/pic4.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Кухни
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/pic4.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Кухни
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/pic4.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Кухни
-                            </div>
-                        </swiper-slide>
-                        <p>Кухонный набор стол + стулья</p>
-                        <div class="furniture-item__price">
-                            <span>500 000 ₸</span>
-                            <div>
-                                <img src="@/assets/img/money.svg" alt="money">
-                                <span>Цена на 2023 год</span>
-                            </div>
-                        </div>
-                        <button>Подробнее</button>
-                    </swiper>
-                </div>
-
-
-
-                <div class="furniture-item" @click="openProduct">
-                    <swiper :pagination="{ clickable: true, }" :modules="modules" class="mySwiper2">
-                        <swiper-slide>
-                            <img src="@/assets/img/pic1.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Кухни
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/pic1.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Кухни
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/pic1.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Кухни
-                            </div>
-                        </swiper-slide>
-                        <p>Кухонный гарнитур</p>
-                        <div class="furniture-item__price">
-                            <span>500 000 ₸</span>
-                            <div>
-                                <img src="@/assets/img/money.svg" alt="money">
-                                <span>Цена на 2023 год</span>
-                            </div>
-                        </div>
-                        <button>Подробнее</button>
-                    </swiper>
-                </div>
-
-                <div class="furniture-item">
-                    <swiper :pagination="{ clickable: true, }" :modules="modules" class="mySwiper2">
-                        <swiper-slide>
-                            <img src="@/assets/img/pic2.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Гостиные
+                            <p>Угловой диван с подушками</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2024 год</span>
+                                </div>
                             </div>
                         </swiper-slide>
                         <swiper-slide>
@@ -481,22 +324,15 @@
                             <div class="furniture-item__name">
                                 Гостиные
                             </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/pic2.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Гостиные
+                            <p>Угловой диван с подушками</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
                             </div>
                         </swiper-slide>
-                        <p>Угловой диван с подушками</p>
-                        <div class="furniture-item__price">
-                            <span>1 000 000 ₸</span>
-                            <div>
-                                <img src="@/assets/img/money.svg" alt="money">
-                                <span>Цена на 2024 год</span>
-                            </div>
-                        </div>
-                        <button>Подробнее</button>
                     </swiper>
                 </div>
 
@@ -506,22 +342,29 @@
                             <img src="@/assets/img/pic3.svg" alt="category" class="category-img">
                             <div class="furniture-item__name">
                                 Гостиные
+                            </div>
+                            <p>Мягкое кресло на ножках</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
                             </div>
                         </swiper-slide>
                         <swiper-slide>
                             <img src="@/assets/img/pic3.svg" alt="category" class="category-img">
                             <div class="furniture-item__name">
                                 Гостиные </div>
-                        </swiper-slide>
-                        <p>Мягкое кресло на ножках</p>
-                        <div class="furniture-item__price">
-                            <span>500 000 ₸</span>
-                            <div>
-                                <img src="@/assets/img/money.svg" alt="money">
-                                <span>Цена на 2023 год</span>
+                            <p>Мягкое кресло на ножках</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
                             </div>
-                        </div>
-                        <button>Подробнее</button>
+                        </swiper-slide>
                     </swiper>
                 </div>
 
@@ -532,11 +375,13 @@
                             <div class="furniture-item__name">
                                 Кухни
                             </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/pic4.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Кухни
+                            <p>Кухонный набор стол + стулья</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
                             </div>
                         </swiper-slide>
                         <swiper-slide>
@@ -544,32 +389,46 @@
                             <div class="furniture-item__name">
                                 Кухни
                             </div>
-                        </swiper-slide>
-                        <p>Кухонный набор стол + стулья</p>
-                        <div class="furniture-item__price">
-                            <span>500 000 ₸</span>
-                            <div>
-                                <img src="@/assets/img/money.svg" alt="money">
-                                <span>Цена на 2023 год</span>
+                            <p>Кухонный набор стол + стулья</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
                             </div>
-                        </div>
-                        <button>Подробнее</button>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/pic4.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Кухни
+                            </div>
+                            <p>Кухонный набор стол + стулья</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
                     </swiper>
                 </div>
 
-
-                <div class="furniture-item" @click="openProduct">
+                <div class="furniture-item">
                     <swiper :pagination="{ clickable: true, }" :modules="modules" class="mySwiper2">
                         <swiper-slide>
                             <img src="@/assets/img/pic1.svg" alt="category" class="category-img">
                             <div class="furniture-item__name">
                                 Кухни
                             </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/pic1.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Кухни
+                            <p>Кухонный гарнитур</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
                             </div>
                         </swiper-slide>
                         <swiper-slide>
@@ -577,16 +436,29 @@
                             <div class="furniture-item__name">
                                 Кухни
                             </div>
-                        </swiper-slide>
-                        <p>Кухонный гарнитур</p>
-                        <div class="furniture-item__price">
-                            <span>500 000 ₸</span>
-                            <div>
-                                <img src="@/assets/img/money.svg" alt="money">
-                                <span>Цена на 2023 год</span>
+                            <p>Кухонный гарнитур</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
                             </div>
-                        </div>
-                        <button>Подробнее</button>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/pic1.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Кухни
+                            </div>
+                            <p>Кухонный гарнитур</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
                     </swiper>
                 </div>
 
@@ -597,11 +469,13 @@
                             <div class="furniture-item__name">
                                 Гостиные
                             </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/pic2.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Гостиные
+                            <p>Угловой диван с подушками</p>
+                            <div class="furniture-item__price">
+                                <span>1 000 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2024 год</span>
+                                </div>
                             </div>
                         </swiper-slide>
                         <swiper-slide>
@@ -609,16 +483,29 @@
                             <div class="furniture-item__name">
                                 Гостиные
                             </div>
-                        </swiper-slide>
-                        <p>Угловой диван с подушками</p>
-                        <div class="furniture-item__price">
-                            <span>1 000 000 ₸</span>
-                            <div>
-                                <img src="@/assets/img/money.svg" alt="money">
-                                <span>Цена на 2024 год</span>
+                            <p>Угловой диван с подушками</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2024 год</span>
+                                </div>
                             </div>
-                        </div>
-                        <button>Подробнее</button>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/pic2.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Гостиные
+                            </div>
+                            <p>Угловой диван с подушками</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
                     </swiper>
                 </div>
 
@@ -628,22 +515,29 @@
                             <img src="@/assets/img/pic3.svg" alt="category" class="category-img">
                             <div class="furniture-item__name">
                                 Гостиные
+                            </div>
+                            <p>Мягкое кресло на ножках</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
                             </div>
                         </swiper-slide>
                         <swiper-slide>
                             <img src="@/assets/img/pic3.svg" alt="category" class="category-img">
                             <div class="furniture-item__name">
                                 Гостиные </div>
-                        </swiper-slide>
-                        <p>Мягкое кресло на ножках</p>
-                        <div class="furniture-item__price">
-                            <span>500 000 ₸</span>
-                            <div>
-                                <img src="@/assets/img/money.svg" alt="money">
-                                <span>Цена на 2023 год</span>
+                            <p>Мягкое кресло на ножках</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
                             </div>
-                        </div>
-                        <button>Подробнее</button>
+                        </swiper-slide>
                     </swiper>
                 </div>
 
@@ -654,11 +548,13 @@
                             <div class="furniture-item__name">
                                 Кухни
                             </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/pic4.svg" alt="category" class="category-img">
-                            <div class="furniture-item__name">
-                                Кухни
+                            <p>Кухонный набор стол + стулья</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
                             </div>
                         </swiper-slide>
                         <swiper-slide>
@@ -666,16 +562,375 @@
                             <div class="furniture-item__name">
                                 Кухни
                             </div>
-                        </swiper-slide>
-                        <p>Кухонный набор стол + стулья</p>
-                        <div class="furniture-item__price">
-                            <span>500 000 ₸</span>
-                            <div>
-                                <img src="@/assets/img/money.svg" alt="money">
-                                <span>Цена на 2023 год</span>
+                            <p>Кухонный набор стол + стулья</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
                             </div>
-                        </div>
-                        <button>Подробнее</button>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/pic4.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Кухни
+                            </div>
+                            <p>Кухонный набор стол + стулья</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                    </swiper>
+                </div>
+
+                <div class="furniture-item">
+                    <swiper :pagination="{ clickable: true, }" :modules="modules" class="mySwiper2">
+                        <swiper-slide>
+                            <img src="@/assets/img/pic1.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Кухни
+                            </div>
+                            <p>Кухонный гарнитур</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/pic1.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Кухни
+                            </div>
+                            <p>Кухонный гарнитур</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/pic1.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Кухни
+                            </div>
+                            <p>Кухонный гарнитур</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                    </swiper>
+                </div>
+
+                <div class="furniture-item">
+                    <swiper :pagination="{ clickable: true, }" :modules="modules" class="mySwiper2">
+                        <swiper-slide>
+                            <img src="@/assets/img/pic2.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Гостиные
+                            </div>
+                            <p>Угловой диван с подушками</p>
+                            <div class="furniture-item__price">
+                                <span>1 000 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2024 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/pic2.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Гостиные
+                            </div>
+                            <p>Угловой диван с подушками</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2024 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/pic2.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Гостиные
+                            </div>
+                            <p>Угловой диван с подушками</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                    </swiper>
+                </div>
+
+                <div class="furniture-item">
+                    <swiper :pagination="{ clickable: true, }" :modules="modules" class="mySwiper2">
+                        <swiper-slide>
+                            <img src="@/assets/img/pic3.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Гостиные
+                            </div>
+                            <p>Мягкое кресло на ножках</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/pic3.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Гостиные </div>
+                            <p>Мягкое кресло на ножках</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                    </swiper>
+                </div>
+
+                <div class="furniture-item">
+                    <swiper :pagination="{ clickable: true, }" :modules="modules" class="mySwiper2">
+                        <swiper-slide>
+                            <img src="@/assets/img/pic4.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Кухни
+                            </div>
+                            <p>Кухонный набор стол + стулья</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/pic4.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Кухни
+                            </div>
+                            <p>Кухонный набор стол + стулья</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/pic4.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Кухни
+                            </div>
+                            <p>Кухонный набор стол + стулья</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                    </swiper>
+                </div>
+
+                <div class="furniture-item">
+                    <swiper :pagination="{ clickable: true, }" :modules="modules" class="mySwiper2">
+                        <swiper-slide>
+                            <img src="@/assets/img/pic1.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Кухни
+                            </div>
+                            <p>Кухонный гарнитур</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/pic1.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Кухни
+                            </div>
+                            <p>Кухонный гарнитур</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/pic1.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Кухни
+                            </div>
+                            <p>Кухонный гарнитур</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                    </swiper>
+                </div>
+
+                <div class="furniture-item">
+                    <swiper :pagination="{ clickable: true, }" :modules="modules" class="mySwiper2">
+                        <swiper-slide>
+                            <img src="@/assets/img/pic2.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Гостиные
+                            </div>
+                            <p>Угловой диван с подушками</p>
+                            <div class="furniture-item__price">
+                                <span>1 000 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2024 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/pic2.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Гостиные
+                            </div>
+                            <p>Угловой диван с подушками</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2024 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/pic2.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Гостиные
+                            </div>
+                            <p>Угловой диван с подушками</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                    </swiper>
+                </div>
+
+                <div class="furniture-item">
+                    <swiper :pagination="{ clickable: true }" :modules="modules" class="mySwiper2">
+                        <swiper-slide>
+                            <img src="@/assets/img/pic3.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Гостиные
+                            </div>
+                            <p>Мягкое кресло на ножках</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/pic3.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Гостиные </div>
+                            <p>Мягкое кресло на ножках</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                    </swiper>
+                </div>
+
+                <div class="furniture-item">
+                    <swiper :pagination="{ clickable: true }" :modules="modules" class="mySwiper2">
+                        <swiper-slide>
+                            <img src="@/assets/img/pic4.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Кухни
+                            </div>
+                            <p>Кухонный набор стол + стулья</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/pic4.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Кухни
+                            </div>
+                            <p>Кухонный набор стол + стулья</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img src="@/assets/img/pic4.svg" alt="category" class="category-img">
+                            <div class="furniture-item__name">
+                                Кухни
+                            </div>
+                            <p>Кухонный набор стол + стулья</p>
+                            <div class="furniture-item__price">
+                                <span>500 000 ₸</span>
+                                <div>
+                                    <img src="@/assets/img/money.svg" alt="money">
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                        </swiper-slide>
                     </swiper>
                 </div>
             </div>
@@ -690,30 +945,6 @@
                     <div>Прихожая</div>
                 </div>
 
-                <div class="furniture__filter-category-mb">
-                    <swiper class="mySwiper3" :modules="modules" :breakpoints="breakpoints2" :freeMode="true"
-                        :mousewheel="true">
-                        <swiper-slide>
-                            <div>Все категории</div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <div>Кухня</div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <div>Гостиная</div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <div>Спальня</div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <div>Ванная</div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <div>Прихожая</div>
-                        </swiper-slide>
-                    </swiper>
-                </div>
-
                 <div class="furniture__filter-pagination">
                     <div class="active">1</div>
                     <span>.</span>
@@ -723,86 +954,6 @@
                     <span>.</span>
                     <div class="last">10</div>
                     <img src="@/assets/img/right.svg" alt="arrow">
-                </div>
-            </div>
-        </div>
-
-
-        <div class="company">
-            <img src="@/assets/img/divan.svg" alt="sofa" class="sofa">
-            <div class="company-info">
-                <h3>О компании</h3>
-                <div class="company-info__text">
-                    <span>МебельИнвест - это опытный и надежный производитель с большим опытом работы.</span>
-                    <span>Мы поможем вам оперативно реализовать любую идею, как дома, так и в коммерческих
-                        помещениях!</span>
-                </div>
-                <TheAccordion>
-                    <template #header>
-                        <img src="@/assets/img/galka.svg" alt="item">
-                        <span>Даем гарантии на продукцию</span>
-                    </template>
-                    Текст блока
-                </TheAccordion>
-                <TheAccordion>
-                    <template #header>
-                        <img src="@/assets/img/document.svg" alt="item">
-                        <span>Сертификаты участника госзакупок</span>
-                    </template>
-                    Текст блока
-                </TheAccordion>
-                <TheAccordion>
-                    <template #header>
-                        <img src="@/assets/img/coin.svg" alt="item">
-                        <span>Предоставляем рассрочку</span>
-                    </template>
-                    Текст блока
-                </TheAccordion>
-                <TheAccordion>
-                    <template #header>
-                        <img src="@/assets/img/medal.svg" alt="item">
-                        <span>20 лет на рынке</span>
-                    </template>
-                    Текст блока
-                </TheAccordion>
-                <TheAccordion>
-                    <template #header>
-                        <img src="@/assets/img/star.svg" alt="item">
-                        <span>4,9 рейтинг 2GIS</span>
-                    </template>
-                    Текст блока
-                </TheAccordion>
-                <button @click="makeRequest">Оставить заявку</button>
-            </div>
-
-            <div class="company-list">
-                <div class="company-item-1">
-                    <img src="@/assets/img/galka.svg" alt="item">
-                    <p>Даем гарантии на продукцию</p>
-                    <span>Текст для блока</span>
-                </div>
-                <div class="company-item-2">
-                    <img src="@/assets/img/document.svg" alt="item">
-                    <p>Сертификаты участника госзакупок</p>
-                    <span>Текст для блока</span>
-                </div>
-                <div class="company-item-3">
-                    <img src="@/assets/img/coin.svg" alt="item">
-                    <p>Предоставляем рассрочку</p>
-                    <span>Текст для блока</span>
-                </div>
-                <div class="company-item-4">
-                    <img src="@/assets/img/medal.svg" alt="item">
-                    <p>20 лет на рынке</p>
-                    <span>Текст для блока</span>
-                </div>
-                <div class="company-item-5">
-                    <div>
-                        <img src="@/assets/img/star.svg" alt="item">
-                        <p>4,9 рейтинг 2GIS</p>
-                        <span>Текст для блока</span>
-                    </div>
-                    <a href="#">Ссылка на 2GIS</a>
                 </div>
             </div>
         </div>
@@ -847,20 +998,6 @@ export default {
                     slidesPerView: 2,
                     spaceBetween: 33,
                 },
-                '480': {
-                    slidesPerView: 2,
-                    spaceBetween: 50,
-                },
-                '390': {
-                    slidesPerView: 2,
-                    spaceBetween: 10,
-                },
-            },
-            breakpoints2: {
-                '390': {
-                    slidesPerView: 3,
-                    spaceBetween: 25,
-                },
             },
             request: false,
         }
@@ -896,10 +1033,6 @@ export default {
         padding: 0 30px;
         background: #fafafa;
     }
-
-    @media (max-width: 480px) {
-        padding: 0 15px;
-    }
 }
 
 .banner {
@@ -917,11 +1050,6 @@ export default {
         margin: 0 -30px;
     }
 
-    @media (max-width: 480px) {
-        padding: 40px 22px;
-        margin: 0 -15px;
-    }
-
     h1 {
         font-family: var(--geo);
         font-weight: 400;
@@ -936,13 +1064,9 @@ export default {
             font-size: 6.67vw;
         }
 
-        @media (max-width: 1024px) {
-            font-size: 64px;
-        }
-
-        @media (max-width: 480px) {
-            font-size: 32px;
-        }
+        // @media (max-width: 1024px) {
+        //     font-size: 64px;
+        // }
     }
 }
 
@@ -963,22 +1087,13 @@ export default {
         color: #1e1e1e;
         margin: 0;
 
-        @media (max-width: 1024px) {
-            font-size: 24px;
-        }
-
-        @media (max-width: 480px) {
-            font-size: 20px;
-            font-weight: 300;
-        }
+        // @media (max-width: 1024px) {
+        //     font-size: 24px;
+        // }
     }
 
     &__slider {
         padding: 30px 0 0 0;
-
-        @media (max-width: 480px) {
-            padding: 15px 0 0 0;
-        }
 
         .category-item {
             position: relative;
@@ -991,17 +1106,9 @@ export default {
                 padding: 20px;
             }
 
-            @media (max-width: 480px) {
-                margin: 0 0 10px 0;
-                padding: 17px 30px 16px;
-            }
-
-            img {
-                @media (max-width: 480px) {
-                    width: 108px;
-                    height: 77px;
-                }
-            }
+            // @media (max-width: 1024px) {
+            //     padding: 44px 75px;
+            // }
 
             .arrow {
                 position: absolute;
@@ -1013,10 +1120,6 @@ export default {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-
-                @media (max-width: 480px) {
-                    display: none;
-                }
             }
 
             .arrow::before {
@@ -1034,10 +1137,6 @@ export default {
 
         .swiper-wrapper {
             margin: 0 0 40px 0;
-
-            @media (max-width: 480px) {
-                margin: 0 0 30px 0;
-            }
         }
 
         .swiper-slide {
@@ -1049,11 +1148,6 @@ export default {
                 font-size: 20px;
                 line-height: 130%;
                 color: #1e1e1e;
-
-                @media (max-width: 480px) {
-                    font-size: 16px;
-                    font-weight: 300;
-                }
             }
         }
 
@@ -1065,22 +1159,12 @@ export default {
             left: 0;
             background: rgba(0, 0, 0, 0.05);
             width: 100%;
-
-            @media (max-width: 480px) {
-                border-radius: 1px;
-                height: 4px;
-            }
         }
 
         .swiper-scrollbar-drag {
             background: #38524b;
             border-radius: 2px;
             height: 7px;
-
-            @media (max-width: 480px) {
-                border-radius: 1px;
-                height: 4px;
-            }
         }
     }
 }
@@ -1100,11 +1184,6 @@ export default {
         margin: 0 -30px;
     }
 
-    @media (max-width: 480px) {
-        padding: 30px 0 40px 0;
-        margin: 0 -15px;
-    }
-
     &__list {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -1116,13 +1195,6 @@ export default {
             grid-template-columns: repeat(2, 1fr);
             column-gap: 20px;
             row-gap: 30px;
-        }
-
-        @media (max-width: 480px) {
-            display: grid;
-            flex-direction: column;
-            gap: 30px;
-            grid-template-columns: none;
         }
     }
 
@@ -1157,10 +1229,6 @@ export default {
 
         .swiper-pagination {
             bottom: 90px !important;
-
-            @media (max-width: 480px) {
-                bottom: 140px !important;
-            }
         }
 
         .swiper-pagination-bullet {
@@ -1180,11 +1248,6 @@ export default {
             color: #1e1e1e;
             white-space: nowrap;
             margin: 20px 0 15px 0;
-
-            @media (max-width: 480px) {
-                font-size: 16px;
-                margin: 15px 0 15px 15px;
-            }
         }
 
         &__name {
@@ -1204,22 +1267,12 @@ export default {
             @media (max-width: 1440px) {
                 font-size: 0.83vw;
             }
-
-            @media (max-width: 480px) {
-                font-size: 12px;
-                padding: 6px 15px;
-            }
         }
 
         &__price {
             display: flex;
             gap: 30px;
             align-items: center;
-
-            @media (max-width: 480px) {
-                margin: 0 15px;
-                justify-content: space-between;
-            }
 
             span {
                 font-family: var(--geo);
@@ -1235,10 +1288,6 @@ export default {
                 gap: 10px;
                 align-items: center;
 
-                @media (max-width: 480px) {
-                    gap: 5px;
-                }
-
                 span {
                     font-family: var(--geo);
                     font-weight: 300;
@@ -1246,30 +1295,7 @@ export default {
                     line-height: 130%;
                     color: #1e1e1e;
                     white-space: nowrap;
-
-                    @media (max-width: 480px) {
-                        font-size: 12px;
-                    }
                 }
-            }
-        }
-
-        button {
-            display: none;
-
-            @media (max-width: 480px) {
-                display: block;
-                border-radius: 5px;
-                padding: 11px 128px;
-                border: none;
-                background: #2d3c38;
-                font-family: var(--geo);
-                font-weight: 300;
-                font-size: 16px;
-                line-height: 100%;
-                color: #fff;
-                width: -webkit-fill-available;
-                margin: 20px 15px 0 15px;
             }
         }
     }
@@ -1296,10 +1322,6 @@ export default {
             order: 2;
         }
 
-        @media (max-width: 480px) {
-            display: none;
-        }
-
         div {
             font-family: var(--geo);
             font-weight: 300;
@@ -1321,44 +1343,6 @@ export default {
         }
     }
 
-    &-category-mb {
-        display: none;
-
-        @media (max-width: 480px) {
-            order: 2;
-            display: block;
-            margin: 0 0 0 15px;
-
-            .swiper-wrapper {
-                align-items: center;
-                width: 375px;
-            }
-
-            .swiper-slide {
-                width: auto !important;
-                white-space: nowrap;
-
-                div {
-                    font-family: var(--geo);
-                    font-weight: 300;
-                    font-size: 14px;
-                    line-height: 130%;
-                    color: #1e1e1e;
-                }
-            }
-
-            .swiper-slide:first-child {
-                div {
-                    background: #2d3c38;
-                    border-radius: 5px;
-                    color: #fff;
-                    padding: 10px 20px;
-                }
-
-            }
-        }
-    }
-
     &-pagination {
         display: flex;
         gap: 25px;
@@ -1367,10 +1351,6 @@ export default {
         @media (max-width: 1024px) {
             order: 1;
             padding: 0 0 0 350px;
-        }
-
-        @media (max-width: 480px) {
-            padding: 0 0 0 80px;
         }
 
         .active {
@@ -1404,261 +1384,6 @@ export default {
             color: #292421;
         }
 
-    }
-}
-
-.company {
-    margin: 0 -100px;
-    padding: 0 0 330px 0;
-    background: #fff;
-    background-size: contain;
-    text-align: center;
-    position: relative;
-
-    @media (max-width: 1440px) {
-        margin: 0 -80px;
-    }
-
-    @media (max-width: 1024px) {
-        margin: 0 -30px;
-        padding: 0 0 50px 0;
-    }
-
-    @media (max-width: 480px) {
-        margin: 0;
-        background: #fafafa;
-    }
-
-    .sofa {
-        @media (max-width: 1440px) {
-            width: 100%;
-        }
-
-        @media (max-width: 480px) {
-            display: none;
-        }
-    }
-
-    &-info {
-        position: absolute;
-        top: 185px;
-        left: 704px;
-        right: 704px;
-
-        @media (max-width: 1440px) {
-            top: 155px;
-            left: 544px;
-            right: 504px;
-        }
-
-        @media (max-width: 1366px) {
-            left: 500px;
-        }
-
-        @media (max-width: 1024px) {
-            left: 250px;
-            right: 250px;
-            top: 100px;
-        }
-
-        @media (max-width: 480px) {
-            position: relative;
-            top: 0;
-            left: 0;
-            right: 0;
-        }
-
-        h3 {
-            font-family: var(--geo);
-            font-weight: 400;
-            font-size: 32px;
-            line-height: 130%;
-            text-align: center;
-            color: #fafafa;
-            margin: 0 0 30px 0;
-            white-space: nowrap;
-
-            @media (max-width: 1440px) {
-                font-size: 1.67vw;
-            }
-
-            @media (max-width: 1024px) {
-                font-size: 24px;
-                margin: 0 0 25px 0;
-            }
-
-            @media (max-width: 480px) {
-                text-align: left;
-                font-size: 20px;
-                font-weight: 300;
-                color: #1e1e1e;
-                margin: 0 0 15px 0;
-            }
-        }
-
-        &__text {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            margin: 0 0 50px 0;
-
-            @media (max-width: 480px) {
-                gap: 20px;
-                margin: 0 0 25px 0;
-            }
-
-            span {
-                font-family: var(--geo);
-                font-weight: 300;
-                font-size: 20px;
-                line-height: 130%;
-                text-align: center;
-                color: #fafafa;
-
-                @media (max-width: 1440px) {
-                    font-size: 1.04vw;
-                }
-
-                @media (max-width: 1024px) {
-                    font-size: 16px;
-                }
-
-                @media (max-width: 480px) {
-                    font-size: 14px;
-                    color: #1e1e1e;
-                    text-align: left;
-                }
-            }
-        }
-
-        button {
-            border-radius: 5px;
-            padding: 9px 108px;
-            background: #fafafa;
-            font-family: var(--geo);
-            font-weight: 300;
-            font-size: 16px;
-            line-height: 130%;
-            color: #1e1e1e;
-            border: none;
-            white-space: nowrap;
-            cursor: pointer;
-
-            @media (max-width: 480px) {
-                background: #2d3c38;
-                color: #fff;
-                width: 100%;
-                margin: 15px 0 0 0;
-            }
-        }
-    }
-
-    &-list {
-        display: flex;
-        gap: 20px;
-        position: absolute;
-        left: 100px;
-        right: 100px;
-        bottom: 150px;
-
-        @media (max-width: 1440px) {
-            left: 50px;
-            right: 50px;
-        }
-
-        @media (max-width: 1024px) {
-            flex-direction: column;
-            position: relative;
-            bottom: auto;
-            left: 0;
-            right: 0;
-            padding: 0 30px;
-        }
-
-        @media (max-width: 480px) {
-            display: none;
-        }
-
-        div {
-            text-align: left;
-            border-radius: 7px;
-            background: #f2f2f2;
-
-            p {
-                font-family: var(--geo);
-                font-weight: 400;
-                font-size: 20px;
-                line-height: 130%;
-                color: #1e1e1e;
-                margin: 20px 0 15px 0;
-            }
-
-            span {
-                font-family: var(--geo);
-                font-weight: 300;
-                font-size: 16px;
-                line-height: 130%;
-                color: #1e1e1e;
-            }
-
-            a {
-                font-family: var(--geo);
-                font-weight: 300;
-                font-size: 16px;
-                line-height: 130%;
-                text-decoration: underline;
-                text-decoration-skip-ink: none;
-                color: #1e1e1e;
-                cursor: pointer;
-            }
-        }
-    }
-
-    &-item-1 {
-        padding: 20px 111px 112px 20px;
-
-        @media (max-width: 1440px) {
-            padding: 20px 60px 60px 20px;
-        }
-    }
-
-    &-item-2 {
-        padding: 20px 59px 112px 20px;
-
-        @media (max-width: 1440px) {
-            padding: 20px 60px 60px 20px;
-        }
-    }
-
-    &-item-3 {
-        padding: 20px 43px 138px 20px;
-        white-space: nowrap;
-
-        @media (max-width: 1440px) {
-            padding: 20px 60px 60px 20px;
-            white-space: wrap;
-        }
-    }
-
-    &-item-4 {
-        padding: 20px 148px 138px 20px;
-        white-space: nowrap;
-
-        @media (max-width: 1440px) {
-            padding: 20px 60px 60px 20px;
-        }
-    }
-
-    &-item-5 {
-        padding: 20px 142px 20px 20px;
-        white-space: nowrap;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        @media (max-width: 1440px) {
-            padding: 20px 60px 20px 20px;
-        }
     }
 }
 </style>

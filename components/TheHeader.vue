@@ -14,6 +14,16 @@
         </div>
     </div>
 
+
+    <div class="header__mb">
+        <div>
+            <img src="@/assets/img/location.svg" alt="map">
+            <span>Алматы</span>
+        </div>
+        <img src="@/assets/img/logomob.svg" alt="logo">
+        <img src="@/assets/img/burger.svg" alt="menu">
+    </div>
+
     <div class="telephone" v-if="isTelephone">
         <span>+7 (727) 390 58 28</span>
         <span>+7 (771) 191 17 35</span>
@@ -55,6 +65,10 @@ export default {
     background: #fff;
     padding: 20px 0;
 
+    @media (max-width: 480px) {
+        display: none;
+    }
+
     &__contacts {
         display: flex;
         gap: 50px;
@@ -72,6 +86,36 @@ export default {
                 font-family: var(--geo);
                 font-weight: 300;
                 font-size: 20px;
+                line-height: 130%;
+                color: #1e1e1e;
+            }
+        }
+    }
+}
+
+.header__mb {
+    display: none;
+
+    @media (max-width: 480px) {
+        background: #fff;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0 11px;
+        align-items: center;
+
+        div {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+
+            img {
+                cursor: pointer;
+            }
+
+            span {
+                font-family: var(--geo);
+                font-weight: 300;
+                font-size: 14px;
                 line-height: 130%;
                 color: #1e1e1e;
             }

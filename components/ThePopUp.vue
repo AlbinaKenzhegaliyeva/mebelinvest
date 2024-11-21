@@ -87,6 +87,18 @@ export default {
     justify-content: center;
     padding: 0 500px;
 
+    @media (max-width: 1440px) {
+        padding: 0 270px;
+    }
+
+    @media (max-width: 1366px) {
+        padding: 0 200px;
+    }
+
+    @media (max-width: 1024px) {
+        padding: 0 70px;
+    }
+
     .popup__block {
         border-radius: 7px;
         background: #fff url(@/assets/img/order.svg) no-repeat left;
