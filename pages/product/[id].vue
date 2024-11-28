@@ -5,7 +5,7 @@
             <div class="product__navigation">
                 <span @click="goBack">Главная</span>
                 <span>/</span>
-                <p>Кухня из акрила</p>
+                <p>{{ currentFurniture.name }}</p>
             </div>
 
             <div class="product__info">
@@ -13,35 +13,17 @@
                     <swiper :direction="'vertical'" :spaceBetween="10" :slidesPerView="4" :loop="true"
                         :loopedSlides="50" :modules="modules" class="gallery-thumbs" :slideToClickedSlide="true"
                         @swiper="setThumbsSwiper">
-                        <swiper-slide>
-                            <img src="@/assets/img/kuhnya.svg" />
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/kuhnya.svg" />
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/kuhnya.svg" />
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/kuhnya.svg" />
+                        <swiper-slide v-for="(photo, index) in currentFurniture.photos" :key="index">
+                            <img :src="'http://45.156.25.213:8040/media/furniture_photos/' + photo" alt="category">
                         </swiper-slide>
                     </swiper>
 
                     <swiper :slidesPerView="1" :loop="true" :modules="modules" class="gallery-top"
                         :thumbs="{ swiper: thumbsSwiper }" :pagination="{ clickable: true }" :navigation="navigation">
-                        <swiper-slide>
-                            <img src="@/assets/img/kuhnya.svg" />
+                        <swiper-slide v-for="(photo, index) in currentFurniture.photos" :key="index">
+                            <img :src="'http://45.156.25.213:8040/media/furniture_photos/' + photo" alt="category">
+                            <img src="@/assets/img/go_back.svg" alt="back" class="back" @click="goBack">
                         </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/kuhnya.svg" />
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/kuhnya.svg" />
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/kuhnya.svg" />
-                        </swiper-slide>
-
                         <div class="nav__next">
                             <img src="@/assets/img/next.svg" />
                         </div>
@@ -54,8 +36,15 @@
                 <div class="product__description">
                     <div class="text">
                         <div>
-                            <p>Кухня из акрила</p>
-                            <span>
+                            <p>{{ currentFurniture.name }}</p>
+                            <div class="text__price-mb">
+                                <p>500 000 ₸</p>
+                                <div>
+                                    <img src="@/assets/img/rotate.svg" />
+                                    <span>Цена на 2023 год</span>
+                                </div>
+                            </div>
+                            <!-- <span>
                                 Этот кухонный гарнитур сочетает в себе современный стиль и функциональность, предлагая
                                 идеальное решение для вашего дома. Чистые линии, минималистичный дизайн и
                                 высококачественные
@@ -66,16 +55,19 @@
                                 к повреждениям и воздействию влаги. Эргономичные ручки и продуманная организация
                                 пространства делают использование гарнитура удобным и приятным. <br> <br>
                                 Идеально подходит для тех, кто ценит комфорт, стиль и качество в кухонной зоне.
+                            </span> -->
+                            <span>
+                                {{ currentFurniture.description }}
                             </span>
                         </div>
                         <button @click="makeRequest">Отправить заявку</button>
                     </div>
 
                     <div class="price">
-                        <p>500 000 ₸</p>
+                        <p>{{ currentFurniture.price }} ₸</p>
                         <div>
                             <img src="@/assets/img/rotate.svg" />
-                            <span>Цена на 2023 год</span>
+                            <span>{{ currentFurniture.short_description }}</span>
                         </div>
                     </div>
                 </div>
@@ -84,110 +76,50 @@
         <div class="similar-products">
             <h3>Похожие товары</h3>
             <div class="similar-products__content">
-                <div class="similar-products__item">
+                <div class="similar-products__item" v-for="(item, index) in furnitures.furniture" :key="index">
                     <swiper :pagination="{ clickable: true }" :modules="modules" class="mySwiper3">
-                        <swiper-slide>
-                            <img src="@/assets/img/pic3.svg" alt="category">
+                        <swiper-slide v-for="(photo, index) in item.photos" :key="index">
+                            <img :src="'http://45.156.25.213:8040/media/furniture_photos/' + photo" alt="category">
                             <div class="category">
-                                Гостиные
-                            </div>
-                            <p>Мягкое кресло на ножках</p>
-                            <div class="price">
-                                <span>500 000 ₸</span>
-                                <div>
-                                    <img src="@/assets/img/money.svg" alt="money">
-                                    <span>Цена на 2023 год</span>
-                                </div>
+                                {{ item.category.name }}
                             </div>
                         </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/pic3.svg" alt="category">
-                            <div class="category">
-                                Гостиные </div>
-                            <p>Мягкое кресло на ножках</p>
-                            <div class="price">
-                                <span>500 000 ₸</span>
-                                <div>
-                                    <img src="@/assets/img/money.svg" alt="money">
-                                    <span>Цена на 2023 год</span>
-                                </div>
+                        <p> {{ item.name }}</p>
+                        <div class="price">
+                            <span> {{ item.price }}₸</span>
+                            <div>
+                                <img src="@/assets/img/money.svg" alt="money">
+                                <span>{{ item.short_description }}</span>
                             </div>
-                        </swiper-slide>
-                    </swiper>
-                </div>
-                <div class="similar-products__item">
-                    <swiper :pagination="{ clickable: true }" :modules="modules" class="mySwiper3">
-                        <swiper-slide>
-                            <img src="@/assets/img/pic3.svg" alt="category">
-                            <div class="category">
-                                Гостиные
-                            </div>
-                            <p>Мягкое кресло на ножках</p>
-                            <div class="price">
-                                <span>500 000 ₸</span>
-                                <div>
-                                    <img src="@/assets/img/money.svg" alt="money">
-                                    <span>Цена на 2023 год</span>
-                                </div>
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/pic3.svg" alt="category">
-                            <div class="category">
-                                Гостиные </div>
-                            <p>Мягкое кресло на ножках</p>
-                            <div class="price">
-                                <span>500 000 ₸</span>
-                                <div>
-                                    <img src="@/assets/img/money.svg" alt="money">
-                                    <span>Цена на 2023 год</span>
-                                </div>
-                            </div>
-                        </swiper-slide>
-                    </swiper>
-                </div>
-                <div class="similar-products__item">
-                    <swiper :pagination="{ clickable: true }" :modules="modules" class="mySwiper3">
-                        <swiper-slide>
-                            <img src="@/assets/img/pic3.svg" alt="category">
-                            <div class="category">
-                                Гостиные
-                            </div>
-                            <p>Мягкое кресло на ножках</p>
-                            <div class="price">
-                                <span>500 000 ₸</span>
-                                <div>
-                                    <img src="@/assets/img/money.svg" alt="money">
-                                    <span>Цена на 2023 год</span>
-                                </div>
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img src="@/assets/img/pic3.svg" alt="category">
-                            <div class="category">
-                                Гостиные </div>
-                            <p>Мягкое кресло на ножках</p>
-                            <div class="price">
-                                <span>500 000 ₸</span>
-                                <div>
-                                    <img src="@/assets/img/money.svg" alt="money">
-                                    <span>Цена на 2023 год</span>
-                                </div>
-                            </div>
-                        </swiper-slide>
+                        </div>
+                        <button>Подробнее</button>
                     </swiper>
                 </div>
                 <div class="similar-products__category">
                     <div class="text">
                         <span>Категория</span>
-                        <p>Кухни</p>
+                        <p>{{ category_name }}</p>
                     </div>
-                    <img src="@/assets/img/cabinet.svg" alt="item" @click="goToCategory" class="category-img">
+                    <!-- <img src="@/assets/img/cabinet.svg" alt="item" @click="goToCategory" class="category-img"> -->
+                    <img :src="'http://45.156.25.213:8040/media/category_photos/' + category_photo" alt="category"
+                        class="category-img" @click="goToCategory">
                     <div class="arrow">
                         <img src="@/assets/img/strelka.svg" alt="arrow">
                     </div>
                 </div>
             </div>
+            <hr>
+            <div class="similar-products__category-mb">
+                <div class="similar-products__category-mb-container">
+                    <img src="@/assets/img/category_kitchen.svg" alt="category">
+                    <div>
+                        <p>Кухни</p>
+                        <span>Категория</span>
+                    </div>
+                </div>
+                <img src="@/assets/img/caret.svg" alt="arrow">
+            </div>
+            <hr>
         </div>
 
         <div class="advantages">
@@ -220,6 +152,41 @@
                 <a href="#">Ссылка на 2GIS</a>
             </div>
         </div>
+        <TheAccordion>
+            <template #header>
+                <img src="@/assets/img/galka.svg" alt="item">
+                <span>Даем гарантии на продукцию</span>
+            </template>
+            Текст блока
+        </TheAccordion>
+        <TheAccordion>
+            <template #header>
+                <img src="@/assets/img/document.svg" alt="item">
+                <span>Сертификаты участника госзакупок</span>
+            </template>
+            Текст блока
+        </TheAccordion>
+        <TheAccordion>
+            <template #header>
+                <img src="@/assets/img/coin.svg" alt="item">
+                <span>Предоставляем рассрочку</span>
+            </template>
+            Текст блока
+        </TheAccordion>
+        <TheAccordion>
+            <template #header>
+                <img src="@/assets/img/medal.svg" alt="item">
+                <span>20 лет на рынке</span>
+            </template>
+            Текст блока
+        </TheAccordion>
+        <TheAccordion>
+            <template #header>
+                <img src="@/assets/img/star.svg" alt="item">
+                <span>4,9 рейтинг 2GIS</span>
+            </template>
+            Текст блока
+        </TheAccordion>
         <TheFooter />
     </div>
 
@@ -234,6 +201,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/thumbs';
 import { FreeMode, Navigation, Thumbs, Pagination } from 'swiper/modules';
+import axios from 'axios';
 
 export default {
     components: {
@@ -243,6 +211,12 @@ export default {
     data() {
         return {
             request: false,
+            furnitureId: this.$route.params.id,
+            currentFurniture: [],
+            furnitures: [],
+            currentCategoryId: null,
+            category_name: '',
+            category_photo: '',
         }
     },
     setup() {
@@ -261,6 +235,12 @@ export default {
             },
         };
     },
+    async mounted() {
+        await this.getCurrentFurniture();
+        if (this.currentCategoryId) {
+            this.filterByCategory(this.currentCategoryId);
+        }
+    },
     methods: {
         makeRequest() {
             this.request = true;
@@ -272,7 +252,42 @@ export default {
         },
         goBack() {
             this.$router.push('/');
-        }
+        },
+        async getCurrentFurniture() {
+            let url = `http://45.156.25.213:8040/api/furniture/${this.furnitureId}`;
+
+            try {
+                const response = await axios.get(url);
+                console.log(response.data);
+                this.currentFurniture = response.data;
+                this.category_name = response.data.category.name;
+                this.category_photo = response.data.category.photo
+
+                // Сохраняем ID категории текущего товара
+                if (this.currentFurniture.category && this.currentFurniture.category.id) {
+                    this.currentCategoryId = this.currentFurniture.category.id;
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        filterByCategory(categoryId = null) {
+            let url = 'http://45.156.25.213:8040/api/overview/';
+
+            if (categoryId) {
+                url += `?category_ids=${categoryId}`;
+            }
+
+            axios
+                .get(url)
+                .then(response => {
+                    console.log(response.data);
+                    this.furnitures = response.data;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
     },
 }
 </script>
@@ -288,26 +303,39 @@ export default {
     @media (max-width: 1024px) {
         padding: 0 30px;
     }
+
+    @media (max-width: 480px) {
+        padding: 0 15px;
+    }
 }
 
 .product {
     background: #fafafa;
-    padding: 25px 100px 0 100px;
+    padding: 125px 100px 0 100px;
     margin: 0 -100px;
 
     @media (max-width: 1440px) {
-        padding: 25px 80px 0 80px;
+        padding: 125px 80px 0 80px;
         margin: 0 -80px;
     }
 
     @media (max-width: 1024px) {
         margin: 0 -30px;
-        padding: 25px 30px 0 30px;
+        padding: 125px 30px 0 30px;
+    }
+
+    @media (max-width: 480px) {
+        margin: 0 -15px;
+        padding: 60px 0 0 0;
     }
 
     &__navigation {
         display: flex;
         gap: 15px;
+
+        @media (max-width: 480px) {
+            display: none;
+        }
 
         p {
             font-family: var(--geo);
@@ -337,6 +365,11 @@ export default {
             flex-direction: column;
             align-items: center;
         }
+
+        @media (max-width: 480px) {
+            padding: 0;
+            gap: 15px;
+        }
     }
 
     &__description {
@@ -357,6 +390,12 @@ export default {
             gap: 20px;
         }
 
+        @media (max-width: 480px) {
+            background: #fafafa;
+            padding: 0 15px;
+            width: auto;
+        }
+
         .price {
             background: #f2f2f2;
             border-radius: 7px;
@@ -373,6 +412,10 @@ export default {
 
             @media (max-width: 1366px) {
                 padding: 15px;
+            }
+
+            @media (max-width: 480px) {
+                display: none;
             }
 
             p {
@@ -414,6 +457,10 @@ export default {
                 gap: 50px;
             }
 
+            @media (max-width: 480px) {
+                gap: 30px;
+            }
+
             p {
                 font-family: var(--geo);
                 font-weight: 400;
@@ -434,6 +481,10 @@ export default {
 
                 @media (max-width: 1024px) {
                     font-size: 20px;
+                }
+
+                @media (max-width: 480px) {
+                    margin: 0 0 15px 0;
                 }
             }
 
@@ -470,6 +521,44 @@ export default {
                 align-self: flex-start;
                 cursor: pointer;
                 white-space: nowrap;
+
+                @media (max-width: 480px) {
+                    width: 100%;
+                }
+            }
+
+            &__price-mb {
+                display: none;
+
+                @media (max-width: 480px) {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin: 0 0 20px 0;
+
+                    p {
+                        font-family: var(--geo);
+                        font-weight: 500;
+                        font-size: 20px;
+                        line-height: 130%;
+                        color: #1e1e1e;
+                        margin: 0;
+                    }
+
+                    div {
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+
+                        span {
+                            font-family: var(--geo);
+                            font-weight: 300;
+                            font-size: 12px;
+                            line-height: 130%;
+                            color: #1e1e1e;
+                        }
+                    }
+                }
             }
         }
     }
@@ -489,6 +578,10 @@ export default {
 
             @media (max-width: 1366px) {
                 width: 80px;
+            }
+
+            @media (max-width: 480px) {
+                display: none;
             }
 
             .swiper-slide img {
@@ -533,13 +626,39 @@ export default {
                 height: 462px;
             }
 
+            @media (max-width: 480px) {
+                height: 376px;
+                width: 390px;
+            }
+
             .swiper-slide img {
+                width: 680px; //added recently
+                height: 628px; //added recently
+
                 @media (max-width: 1440px) {
                     width: 500px;
                 }
 
                 @media (max-width: 1366px) {
                     height: 462px;
+                }
+
+                @media (max-width: 480px) {
+                    width: 100%;
+                    height: 376px;
+                }
+            }
+
+            .back {
+                display: none;
+
+                @media (max-width: 480px) {
+                    display: block;
+                    width: 30px !important;
+                    height: 30px !important;
+                    position: absolute;
+                    top: 15px;
+                    left: 15px;
                 }
             }
         }
@@ -560,6 +679,10 @@ export default {
         bottom: 200px;
         right: 20px;
     }
+
+    @media (max-width: 480px) {
+        display: none;
+    }
 }
 
 .nav__prev {
@@ -575,6 +698,10 @@ export default {
     @media (max-width: 1440px) {
         bottom: 200px;
         left: 20px;
+    }
+
+    @media (max-width: 480px) {
+        display: none;
     }
 }
 
@@ -593,6 +720,11 @@ export default {
         padding: 100px 30px;
     }
 
+    @media (max-width: 480px) {
+        padding: 30px 0 40px 0;
+        margin: 0 -15px;
+    }
+
     h3 {
         font-family: var(--geo);
         font-weight: 400;
@@ -600,6 +732,12 @@ export default {
         line-height: 130%;
         color: #1e1e1e;
         margin: 0 0 30px 0;
+
+        @media (max-width: 480px) {
+            font-size: 20px;
+            font-weight: 300;
+            margin: 0 0 20px 15px;
+        }
     }
 
     &__content {
@@ -633,6 +771,10 @@ export default {
         @media (max-width: 1024px) {
             width: 944px;
             padding: 20px 0 33px 20px;
+        }
+
+        @media (max-width: 480px) {
+            display: none;
         }
 
         .arrow {
@@ -701,15 +843,98 @@ export default {
 
         .category-img {
             padding: 0 0 0 60px;
+            width: 238px;
+            height: 169px;
 
             @media (max-width: 1440px) {
                 padding: 0 0 0 25px;
                 width: 175px;
             }
 
-            @media (max-width: 1440px) {
+            @media (max-width: 1366px) {
                 width: 156px;
             }
+        }
+    }
+
+    button {
+        display: none;
+
+        @media (max-width: 480px) {
+            display: block;
+            border-radius: 5px;
+            padding: 11px 128px;
+            border: none;
+            background: #2d3c38;
+            font-family: var(--geo);
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 100%;
+            color: #fff;
+            width: -webkit-fill-available;
+            margin: 20px 15px 0 15px;
+        }
+    }
+
+    hr {
+        display: none;
+
+        @media (max-width: 480px) {
+            display: block;
+            border: 1.50px solid #ededed;
+            height: 0px;
+            margin: 40px 15px 0 15px;
+        }
+    }
+
+    hr:last-child {
+        display: none;
+
+        @media (max-width: 480px) {
+            display: block;
+            margin: 0 15px;
+        }
+    }
+
+    &__category-mb {
+        display: none;
+
+        @media (max-width: 480px) {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+
+            &-container {
+                display: flex;
+                gap: 17px;
+                align-items: center;
+
+                div {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+
+                    p {
+                        margin: 0;
+                        font-family: var(--geo);
+                        font-weight: 300;
+                        font-size: 16px;
+                        line-height: 130%;
+                        color: #000;
+                    }
+
+                    span {
+                        font-family: var(--geo);
+                        font-weight: 300;
+                        font-size: 14px;
+                        line-height: 130%;
+                        color: #1e1e1e;
+                    }
+                }
+            }
+
+
         }
     }
 }
@@ -721,6 +946,10 @@ export default {
 
     @media (max-width: 1024px) {
         flex-direction: column;
+    }
+
+    @media (max-width: 480px) {
+        display: none;
     }
 
     div {
@@ -807,6 +1036,16 @@ export default {
         }
     }
 }
+
+.accordion:last-child {
+    margin: 0 0 50px 0 !important;
+}
+
+.footer {
+    @media (max-width: 480px) {
+        margin: 50px -15px 0 -15px;
+    }
+}
 </style>
 
 
@@ -849,6 +1088,10 @@ export default {
 
     .swiper-pagination {
         bottom: 90px !important;
+
+        @media (max-width: 480px) {
+            bottom: 140px !important;
+        }
     }
 
     .swiper-pagination-bullet {
@@ -867,6 +1110,10 @@ export default {
         line-height: 130%;
         color: #1e1e1e;
         margin: 20px 0 15px 0;
+
+        @media (max-width: 480px) {
+            margin: 15px 0 15px 15px;
+        }
     }
 
     .category {
@@ -886,12 +1133,23 @@ export default {
         @media (max-width: 1440px) {
             font-size: 0.83vw;
         }
+
+        @media (max-width: 480px) {
+            font-size: 12px;
+            padding: 6px 15px;
+        }
     }
 
     .price {
         display: flex;
         gap: 30px;
         align-items: center;
+
+        @media (max-width: 480px) {
+            margin: 0 15px;
+            gap: 0;
+            justify-content: space-between;
+        }
 
         span {
             font-family: var(--geo);
