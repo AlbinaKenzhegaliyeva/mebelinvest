@@ -3,7 +3,7 @@
         <div class="header__logo">
             <img src="@/assets/img/logo.svg" alt="logo" @click="goToTop">
         </div>
-        <div class="header__btn-3d">
+        <div class="header__btn-3d" @click="open3D">
             <span>3D-планировщик</span>
         </div>
         <div class="header__contacts">
@@ -32,7 +32,7 @@
 
     <div class="telephone" v-if="isTelephone">
         <a href="tel:+77273905828" @click="counterTelephone">+7 (727) 390 58 28</a>
-        <a href="tel:+77775852525" @click="counterTelephone">+7 777 585 25 25</a>
+        <a href="tel:+77711911735" @click="counterTelephone">+7 771 191 17 35</a>
     </div>
 
     <div class="address" v-if="isAddress">
@@ -73,13 +73,13 @@
         <div class="menu__mb-contacts">
             <p>{{ $t('contacts') }}</p>
             <a href="tel:+77273905828">+7 (727) 390 58 28</a>
-            <a href="tel:+77775852525">+7 777 585 25 25</a>
+            <a href="tel:+77711911735">+7 771 191 17 35</a>
         </div>
         <div class="menu__mb-address">
             <p>{{ $t('address') }}</p>
             <span>{{ $t('addressText') }}</span>
         </div>
-        <div class="menu__mb-btn-3d">
+        <div class="menu__mb-btn-3d" @click="open3D">
             <span>3D-планировщик</span>
         </div>
     </div>
@@ -240,6 +240,9 @@ export default {
             } else {
                 this.$router.push('/');
             }
+        },
+        open3D() {
+            window.open("https://planplace.ru/clients/33339668/", "_blank");
         }
     }
 }

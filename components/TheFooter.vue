@@ -14,7 +14,7 @@
         <div class="footer__contacts">
             <p>{{ $t('contacts') }}</p>
             <a href="tel:+77273905828">+7 (727) 390 58 28</a>
-            <a href="tel:+77775852525">+7 777 585 25 25</a>
+            <a href="tel:+77711911735">+7 771 191 17 35</a>
         </div>
         <div class="footer__address">
             <p>{{ $t('address') }}</p>
