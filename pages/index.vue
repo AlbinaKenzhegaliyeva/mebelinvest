@@ -1,19 +1,20 @@
 <template>
     <div class="page">
-        <TheHeader />
-        <div class="banner">
-            <h1>Широкий выбор мебели на заказ</h1>
-        </div>
+        <TheHeader @language-changed="updateLanguage" />
+        <!-- <TheLoader v-if="furnitures.length <= 0 || loading" /> -->
+        <!-- <div class="banner">
+            <h1>{{ $t('bannerTitle') }}</h1>
+        </div> -->
         <div class="category">
-            <h2>Категории</h2>
+            <h2>{{ $t('categoryTitle') }}</h2>
             <div class="category__slider">
                 <swiper class="mySwiper" :scrollbar="{ hide: false, draggable: true, mousewheel: true, }"
                     :modules="modules" :breakpoints="breakpoints" :freeMode="true" :mousewheel="true">
                     <swiper-slide v-for="category in categories" :key="category.id">
                         <nuxt-link :to="`/category/${category.id}`">
-                            <div class="category-item" @click="openCategory">
-                                <img :src="'http://45.156.25.213:8040/media/category_photos/' + category.photo"
-                                    alt="item">
+                            <div class="category-item">
+                                <img :src="'https://mebelinvest.kz/api/media/category_photos/' + category.photo"
+                                    alt="item" class="category-img">
                                 <div class="arrow">
                                     <img src="@/assets/img/strelka.svg" alt="arrow">
                                 </div>
@@ -27,26 +28,36 @@
 
         <div class="furniture">
             <div class="furniture__list">
-
-                <div class="furniture-item" v-for="furniture in furnitures.furniture" :key="furniture.id">
+                <div class="furniture-item" v-for="furniture in paginatedFurnitures" :key="furniture.id">
                     <nuxt-link :to="`/product/${furniture.id}`">
-                        <swiper :pagination="{ clickable: true, }" :modules="modules" class="mySwiper2">
+                        <swiper :pagination="{ clickable: true, }" :modules="modules" class="mySwiper2" :navigation="{
+                            nextEl: `.next_furniture_${furniture.id}`,
+                            prevEl: `.prev_furniture_${furniture.id}`
+                        }">
                             <swiper-slide v-for="(photo, index) in furniture.photos" :key="index">
-                                <img :src="'http://45.156.25.213:8040/media/furniture_photos/' + photo" alt="category"
-                                    class="category-img">
-                                <div class="furniture-item__name">
-                                    {{ furniture.category.name }}
+                                <div class="furniture-item__img">
+                                    <img :src="'https://mebelinvest.kz/api/media/furniture_photos/' + photo.image"
+                                        alt="furniture">
+                                    <div class="navigation" v-if="furniture.photos.length > 1">
+                                        <img :class="`prev_furniture_${furniture.id}`" src="@/assets/img/prev.svg"
+                                            alt="arrow">
+                                        <img :class="`next_furniture_${furniture.id}`" src="@/assets/img/next.svg"
+                                            alt="arrow">
+                                    </div>
                                 </div>
                             </swiper-slide>
+                            <div class="furniture-item__name">
+                                {{ furniture.category.name }}
+                            </div>
                             <p> {{ furniture.name }}</p>
                             <div class="furniture-item__price">
-                                <span> {{ furniture.price }} ₸</span>
+                                <span> {{ formatPrice(furniture.price) }} ₸</span>
                                 <div>
                                     <img src="@/assets/img/money.svg" alt="money">
                                     <span> {{ furniture.short_description }}</span>
                                 </div>
                             </div>
-                            <button>Подробнее</button>
+                            <button @click="openProduct(furniture.id)">{{ $t('readMore') }}</button>
                         </swiper>
                     </nuxt-link>
                 </div>
@@ -54,128 +65,117 @@
 
             <div class="furniture__filter">
                 <div class="furniture__filter-category">
-                    <div @click="selectCategory(null)" :class="{ active: activeCategory === null }">Все категории</div>
-                    <div @click="selectCategory(1)" :class="{ active: activeCategory === 1 }">Кухня</div>
-                    <div @click="selectCategory(2)" :class="{ active: activeCategory === 2 }">Гостиная</div>
-                    <div @click="selectCategory(5)" :class="{ active: activeCategory === 5 }">Спальня</div>
-                    <div @click="selectCategory(4)" :class="{ active: activeCategory === 4 }">Ванная</div>
-                    <div @click="selectCategory(3)" :class="{ active: activeCategory === 3 }">Прихожая</div>
+                    <div @click="selectCategory(null)" :class="{ active: activeCategory === null }">{{
+                        $t('allCategory') }}</div>
+                    <div v-for="category in categories" :key="category.id" @click="selectCategory(category.id)"
+                        :class="{ active: activeCategory === category.id }">
+                        {{ category.name }}
+                    </div>
                 </div>
 
                 <div class="furniture__filter-category-mb">
                     <swiper class="mySwiper3" :modules="modules" :breakpoints="breakpoints2" :freeMode="true"
                         :mousewheel="true">
                         <swiper-slide @click="selectCategory(null)">
-                            <div :class="{ active: activeCategory === null }">Все
-                                категории</div>
+                            <div :class="{ active: activeCategory === null }">{{ $t('allCategory') }}</div>
                         </swiper-slide>
-                        <swiper-slide @click="selectCategory(1)">
-                            <div :class="{ active: activeCategory === 1 }">Кухня</div>
-                        </swiper-slide>
-                        <swiper-slide @click="selectCategory(2)">
-                            <div :class="{ active: activeCategory === 2 }">Гостиная</div>
-                        </swiper-slide>
-                        <swiper-slide @click="selectCategory(5)">
-                            <div :class="{ active: activeCategory === 5 }">Спальня</div>
-                        </swiper-slide>
-                        <swiper-slide @click="selectCategory(4)">
-                            <div :class="{ active: activeCategory === 4 }">Ванная</div>
-                        </swiper-slide>
-                        <swiper-slide @click="selectCategory(3)">
-                            <div :class="{ active: activeCategory === 3 }">Прихожая</div>
+                        <swiper-slide v-for="category in categories" :key="category.id"
+                            @click="selectCategory(category.id)">
+                            <div :class="{ active: activeCategory === category.id }">{{ category.name }}</div>
                         </swiper-slide>
                     </swiper>
                 </div>
 
-                <div class="furniture__filter-pagination">
-                    <div class="active">1</div>
-                    <span>.</span>
-                    <span>.</span>
-                    <span>.</span>
-                    <span>.</span>
-                    <span>.</span>
-                    <div class="last">10</div>
-                    <img src="@/assets/img/right.svg" alt="arrow">
+                <div class="furniture__filter-pagination" v-if="furnitures_length >= 20">
+                    <div v-for="page in visiblePages" :key="page" @click.prevent="goToPage(page)"
+                        :class="{ active: page === currentPage, dots: page === 'dots' }">
+                        <template v-if="page === 'dots'">
+                            <span class="dot" v-for="n in 3" :key="n">.</span>
+                        </template>
+                        <template v-else>
+                            {{ page }}
+                        </template>
+                    </div>
+                    <img src="@/assets/img/right.svg" alt="arrow" @click="nextPage"
+                        :class="{ disabled: currentPage === totalPages }">
                 </div>
             </div>
         </div>
 
-
         <div class="company">
-            <img src="@/assets/img/divan.svg" alt="sofa" class="sofa">
             <div class="company-info">
-                <h3>О компании</h3>
                 <div class="company-info__text">
-                    <span>МебельИнвест - это опытный и надежный производитель с большим опытом работы.</span>
-                    <span>Мы поможем вам оперативно реализовать любую идею, как дома, так и в коммерческих
-                        помещениях!</span>
+                    <h3>{{ $t('aboutCompany') }}</h3>
+                    <span>{{ $t('aboutCompanyText') }}</span>
+                    <span>{{ $t('aboutCompanyAnotherText') }}</span>
+                    <button @click="makeRequest" class="btn">{{ $t('applyRequest') }}</button>
                 </div>
+                <img src="@/assets/img/companyy.png" alt="sofa" class="sofa">
                 <TheAccordion>
                     <template #header>
                         <img src="@/assets/img/galka.svg" alt="item">
-                        <span>Даем гарантии на продукцию</span>
+                        <span>{{ $t('card_1') }}</span>
                     </template>
-                    Текст блока
+                    {{ $t('card_1_text') }}
                 </TheAccordion>
                 <TheAccordion>
                     <template #header>
                         <img src="@/assets/img/document.svg" alt="item">
-                        <span>Сертификаты участника госзакупок</span>
+                        <span>{{ $t('card_2') }}</span>
                     </template>
-                    Текст блока
+                    {{ $t('card_2_text') }}
                 </TheAccordion>
                 <TheAccordion>
                     <template #header>
                         <img src="@/assets/img/coin.svg" alt="item">
-                        <span>Предоставляем рассрочку</span>
+                        <span>{{ $t('card_3') }}</span>
                     </template>
-                    Текст блока
+                    {{ $t('card_3_text') }}
                 </TheAccordion>
                 <TheAccordion>
                     <template #header>
                         <img src="@/assets/img/medal.svg" alt="item">
-                        <span>20 лет на рынке</span>
+                        <span>{{ $t('card_4') }}</span>
                     </template>
-                    Текст блока
+                    {{ $t('card_4_text') }}
                 </TheAccordion>
                 <TheAccordion>
                     <template #header>
                         <img src="@/assets/img/star.svg" alt="item">
-                        <span>4,9 рейтинг 2GIS</span>
+                        <span>{{ $t('card_5') }}</span>
                     </template>
-                    Текст блока
+                    {{ $t('card_5_text') }}
                 </TheAccordion>
-                <button @click="makeRequest">Оставить заявку</button>
+                <button @click="makeRequest" class="btn__mb">{{ $t('applyRequest') }}</button>
             </div>
 
             <div class="company-list">
                 <div class="company-item-1">
                     <img src="@/assets/img/galka.svg" alt="item">
-                    <p>Даем гарантии на продукцию</p>
-                    <span>Текст для блока</span>
+                    <p>{{ $t('card_1') }}</p>
+                    <span>{{ $t('card_1_text') }}</span>
                 </div>
                 <div class="company-item-2">
                     <img src="@/assets/img/document.svg" alt="item">
-                    <p>Сертификаты участника госзакупок</p>
-                    <span>Текст для блока</span>
+                    <p>{{ $t('card_2') }}</p>
+                    <span>{{ $t('card_2_text') }}</span>
                 </div>
                 <div class="company-item-3">
                     <img src="@/assets/img/coin.svg" alt="item">
-                    <p>Предоставляем рассрочку</p>
-                    <span>Текст для блока</span>
+                    <p>{{ $t('card_3') }}</p>
+                    <span>{{ $t('card_3_text') }}</span>
                 </div>
                 <div class="company-item-4">
                     <img src="@/assets/img/medal.svg" alt="item">
-                    <p>20 лет на рынке</p>
-                    <span>Текст для блока</span>
+                    <p>{{ $t('card_4') }}</p>
+                    <span>{{ $t('card_4_text') }}</span>
                 </div>
                 <div class="company-item-5">
                     <div>
                         <img src="@/assets/img/star.svg" alt="item">
-                        <p>4,9 рейтинг 2GIS</p>
-                        <span>Текст для блока</span>
+                        <p>{{ $t('card_5') }}</p>
+                        <span>{{ $t('card_5_text') }}</span>
                     </div>
-                    <a href="#">Ссылка на 2GIS</a>
                 </div>
             </div>
         </div>
@@ -186,9 +186,9 @@
 </template>
 
 <script>
+import 'swiper/css';
 import { Navigation, Pagination, Scrollbar } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
@@ -238,84 +238,262 @@ export default {
             },
             request: false,
             categories: [],
+            currentCategory: {},
             furnitures: [],
             activeCategory: null,
+            furnitures_length: null,
+            currentLanguage: "RU",
+            loading: false,
+            navigation_furniture: {
+                nextEl: '.next_furniture',
+                prevEl: '.prev_furniture',
+            },
+            currentPage: 1,
+            itemsPerPage: 15,
+            furnitures_list: [],
         }
     },
-    mounted() {
-        this.getCategories();
-        this.selectCategory(null);
-        //this.getFurniture();
+    async mounted() {
+        // const savedLanguage = localStorage.getItem('language') || 'RU';
+        // this.currentLanguage = savedLanguage;
+
+        const savedLanguage = localStorage.getItem('language') || 'RU';
+        if (this.$i18n.locale !== savedLanguage) {
+            this.$i18n.locale = savedLanguage; // Обновляем язык
+        }
+
+        try {
+            await this.getCategories();
+            await this.selectCategory(null);
+            this.updateLanguage(savedLanguage); // Вызываем только после загрузки данных
+        } catch (error) {
+            console.error("Error during initialization:", error);
+        }
+    },
+    computed: {
+        paginatedFurnitures() {
+            const start = (this.currentPage - 1) * this.itemsPerPage;
+            const end = start + this.itemsPerPage;
+            return this.furnitures_list.slice(start, end);
+        },
+        totalPages() {
+            return Math.ceil(this.furnitures_list.length / this.itemsPerPage);
+        },
+        visiblePages() {
+            if (this.furnitures_list.length === 0) {
+                return [1];
+            }
+
+            let pages = [];
+            const totalPages = this.totalPages;
+
+            if (totalPages <= 5) {
+                // Если всего страниц 5 или меньше, показываем их все
+                for (let i = 1; i <= totalPages; i++) {
+                    pages.push(i);
+                }
+            } else if (this.currentPage <= 3) {
+                // Если текущая страница одна из первых трех, показываем первые три, многоточие и последнюю
+                pages = [1, 2, 3, 'dots', totalPages];
+            } else if (this.currentPage >= totalPages - 2) {
+                // Если текущая страница одна из последних трех, показываем первую, многоточие и последние три
+                pages = [totalPages - 2, totalPages - 1, totalPages];
+            } else {
+                // В остальных случаях показываем первую, многоточие, текущую, следующую и последнюю
+                pages = [this.currentPage - 1, this.currentPage, this.currentPage + 1, 'dots', totalPages];
+            }
+
+            // Удаляем дубликаты и проверяем, если между многоточиями нет нужды
+            pages = pages.filter((page, index, self) => self.indexOf(page) === index);
+
+            return pages;
+        }
     },
     methods: {
-        openCategory() {
-            this.$router.push('/category/about');
+        formatPrice(value) {
+            return value.toLocaleString('ru-RU'); // Форматирует с пробелами как в русском языке
+        },
+        goToPage(page) {
+            if (page !== 'dots') {
+                this.currentPage = page;
+            }
+            this.$nextTick(() => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth',
+                });
+            });
+        },
+        nextPage() {
+            if (this.currentPage < this.totalPages) {
+                this.currentPage++;
+            }
+            this.$nextTick(() => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth',
+                });
+            });
+        },
+        prevPage() {
+            if (this.currentPage > 1) {
+                this.currentPage--;
+            }
+        },
+        getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Проверяем, начинается ли куки с указанного имени
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
         },
         makeRequest() {
-            this.request = true;
+            let source = "Заявка";
+            let url = `https://mebelinvest.kz/api/click/${source}/`;
             document.body.style.overflow = 'hidden';
+            const csrfToken = this.getCookie('csrftoken');
+            axios
+                .post(url, {}, {
+                    headers: {
+                        'X-CSRFToken': csrfToken, // Добавляем CSRF-токен в заголовок
+                    },
+                })
+                .then(response => {
+                    console.log(response);
+                    this.request = true;
+
+                })
+                .catch(error => {
+                    console.error(error);
+                    document.body.style.overflow = '';
+                })
         },
         closePopUp() {
             this.request = false;
             document.body.style.overflow = '';
         },
-        openProduct() {
-            this.$router.push('/product/info');
+        openProduct(furnitureId) {
+            this.$router.push(`/product/${furnitureId}`);
         },
-        getCategories() {
-            let url = 'http://45.156.25.213:8040/api/categories/';
+        async getCategories() {
+            let url = 'https://mebelinvest.kz/api/categories/';
 
-            axios
-                .get(url)
-                .then(response => {
-                    console.log(response.data);
-                    this.categories = response.data;
-                })
-                .catch(error => {
-                    console.error(error);
-                })
+            try {
+                const response = await axios.get(url);
+                console.log(response.data);
+                this.categories = response.data;
+
+                // Add the originalName property for each category
+                this.categories.forEach((category) => {
+                    category.originalName = category.name; // Save the original Russian name
+                });
+            } catch (error) {
+                console.error(error);
+            }
         },
-        // getFurniture() {
-        //     let url = 'http://45.156.25.213:8040/api/furniture/';
 
-        //     axios
-        //         .get(url)
-        //         .then(response => {
-        //             console.log(response.data);
-        //             this.furnitures = response.data;
-        //         })
-        //         .catch(error => {
-        //             console.error(error);
-        //         })
-        // },
-        filterByCategory(categoryId = null) {
-            let url = 'http://45.156.25.213:8040/api/overview/';
-
-            // Если категория указана, добавляем параметр category_ids
+        async filterByCategory(categoryId = null) {
+            let url = 'https://mebelinvest.kz/api/overview/';
             if (categoryId) {
                 url += `?category_ids=${categoryId}`;
             }
 
-            axios
-                .get(url)
-                .then(response => {
-                    console.log(response.data);
-                    this.furnitures = response.data;
-                })
-                .catch(error => {
-                    console.error(error);
-                })
+            this.loading = true;
+            try {
+                const response = await axios.get(url);
+                console.log(response.data);
 
+                if (response.data && response.data.furniture && response.data.categories) {
+                    this.furnitures = response.data;
+                    this.furnitures_length = response.data.furniture.length;
+                    this.furnitures_list = response.data.furniture;
+
+                    this.furnitures.categories.forEach((category) => {
+                        category.originalName = category.name || ''; // Защита от null
+                    });
+
+                    this.furnitures.furniture.forEach((item) => {
+                        item.originalName = item.name || '';
+                        item.originalDescription = item.description || '';
+                        item.originalShortDescription = item.short_description || '';
+                        item.originalCategoryName = item.category?.name || '';
+                    });
+
+                    this.updateLanguage(this.currentLanguage);
+                } else {
+                    console.error('Unexpected API response structure:', response.data);
+                }
+            } catch (error) {
+                console.error(error);
+            } finally {
+                this.loading = false;
+            }
         },
-        selectCategory(categoryId) {
+        async selectCategory(categoryId) {
             this.activeCategory = categoryId;
-            this.filterByCategory(categoryId);
+            await this.filterByCategory(categoryId);
+            this.loading = false;
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        },
+        updateLanguage(language) {
+            this.currentLanguage = language;
+            this.$i18n.locale = language; // Меняем язык в i18n
+            if (process.client) {
+                localStorage.setItem('language', language); // Сохраняем выбор
+            }
+
+            if (this.categories && Array.isArray(this.categories)) {
+                this.categories.forEach((category) => {
+                    if (language === "RU") {
+                        category.name = category.originalName;
+                    } else {
+                        category.name = category.name_kz;
+                    }
+                });
+            }
+
+            if (this.furnitures && this.furnitures.furniture && Array.isArray(this.furnitures.furniture)) {
+                this.furnitures.furniture.forEach((item) => {
+                    if (language === "RU") {
+                        item.name = item.originalName; // Restore original Russian name
+                        item.description = item.originalDescription; // Restore original Russian description
+                        item.short_description = item.originalShortDescription; // Restore original Russian short description
+                        item.category.name = item.originalCategoryName;
+                    } else {
+                        item.name = item.name_kz; // Use Kazakh name or fallback to Russian
+                        item.description = item.description_kz; // Use Kazakh description or fallback
+                        item.short_description = item.short_description_kz; // Use Kazakh short description or fallback
+                        item.category.name = item.category.name_kz;
+                    }
+                });
+            }
+
+            if (this.furnitures && this.furnitures.categories && Array.isArray(this.furnitures.categories)) {
+                this.furnitures.categories.forEach((item) => {
+                    if (language === "RU") {
+                        item.name = item.originalName; // Restore original Russian name
+                    } else {
+                        item.name = item.name_kz; // Use Kazakh name or fallback to Russian
+                    }
+                });
+            }
         },
     },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .page {
     padding: 0 100px;
 
@@ -378,13 +556,14 @@ export default {
 }
 
 .category {
-    padding: 40px 0 50px 0;
+    // padding: 40px 0 50px 0;
+    padding: 100px 0 50px 0;
     // margin: 0 -100px 0 0;
 
 
-    @media (max-width: 1024px) {
-        padding: 0;
-    }
+    // @media (max-width: 1024px) {
+    //     padding: 0;
+    // }
 
     h2 {
         font-family: var(--geo);
@@ -417,6 +596,7 @@ export default {
             padding: 29px 54px 31px 53px;
             border-radius: 7px;
             margin: 0 0 20px 0;
+            overflow: hidden;
 
             @media (max-width: 1440px) {
                 padding: 20px;
@@ -427,7 +607,15 @@ export default {
                 padding: 17px 30px 16px;
             }
 
-            img {
+            .category-img {
+                width: 300px;
+                height: 200px;
+                transition: transform 0.3s ease;
+
+                @media (max-width: 1440px) {
+                    width: 250px;
+                }
+
                 @media (max-width: 480px) {
                     width: 108px;
                     height: 77px;
@@ -490,7 +678,7 @@ export default {
         }
 
         .swiper-slide {
-            width: auto !important;
+            // width: auto !important;
 
             span {
                 font-family: var(--geo);
@@ -551,15 +739,15 @@ export default {
 
     @media (max-width: 480px) {
         padding: 30px 0 40px 0;
-        margin: 0 -15px;
+        margin: 0;
     }
 
     &__list {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(5, auto);
-        column-gap: 30px;
-        row-gap: 40px;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(3, auto);
+        column-gap: 25px;
+        row-gap: 30px;
 
         @media (max-width: 1024px) {
             grid-template-columns: repeat(2, 1fr);
@@ -570,26 +758,33 @@ export default {
         @media (max-width: 480px) {
             display: grid;
             flex-direction: column;
-            gap: 30px;
-            grid-template-columns: none;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 15px;
         }
     }
 
     &-item {
+        position: relative;
+        overflow: hidden;
+
         .swiper-slide img {
             display: block;
             width: 100%;
-            height: 100%;
+            height: 430px;
+            border-radius: 8px;
             object-fit: cover;
             position: relative;
-        }
 
-        // .category-img {
-        //     @media (max-width: 1024px) {
-        //         width: 470px !important;
-        //         border-radius: 10px;
-        //     }
-        // }
+            @media (max-width: 1440px) {
+                // height: 234px;
+                height: 330px;
+            }
+
+            @media (max-width: 480px) {
+                // height: 295px;
+                height: 220px;
+            }
+        }
 
         .swiper-wrapper {
             margin: 0;
@@ -598,10 +793,6 @@ export default {
             @media (max-width: 1440px) {
                 width: 250px;
             }
-
-            // @media (max-width: 1024px) {
-            //     width: 470px;
-            // }
         }
 
         .swiper-pagination {
@@ -613,12 +804,12 @@ export default {
         }
 
         .swiper-pagination-bullet {
-            background: #fff;
+            background: rgba(255, 255, 255, 0.5);
             border-radius: 100%;
         }
 
         .swiper-pagination-bullet-active {
-            background: #2d3c38;
+            background: #fff;
         }
 
         p {
@@ -632,7 +823,8 @@ export default {
 
             @media (max-width: 480px) {
                 font-size: 16px;
-                margin: 15px 0 15px 15px;
+                margin: 10px 0;
+                //white-space: wrap;
             }
         }
 
@@ -649,6 +841,7 @@ export default {
             position: absolute;
             top: 15px;
             left: 15px;
+            z-index: 100;
 
             @media (max-width: 1440px) {
                 font-size: 0.83vw;
@@ -666,8 +859,9 @@ export default {
             align-items: center;
 
             @media (max-width: 480px) {
-                margin: 0 15px;
-                justify-content: space-between;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
             }
 
             span {
@@ -709,16 +903,17 @@ export default {
             @media (max-width: 480px) {
                 display: block;
                 border-radius: 5px;
-                padding: 11px 128px;
+                padding: 11px 43px;
                 border: none;
                 background: #2d3c38;
                 font-family: var(--geo);
                 font-weight: 300;
-                font-size: 16px;
+                font-size: 14px;
                 line-height: 100%;
                 color: #fff;
                 width: -webkit-fill-available;
-                margin: 20px 15px 0 15px;
+                margin: 10px 0 0 0;
+                pointer-events: auto;
             }
         }
     }
@@ -738,6 +933,10 @@ export default {
         flex-direction: column;
         gap: 30px;
         align-items: flex-start;
+    }
+
+    @media (max-width: 480px) {
+        align-items: center;
     }
 
     &-category {
@@ -781,7 +980,7 @@ export default {
         @media (max-width: 480px) {
             order: 2;
             display: block;
-            margin: 0 0 0 15px;
+            margin: 0;
 
             .swiper-wrapper {
                 align-items: center;
@@ -821,7 +1020,19 @@ export default {
         }
 
         @media (max-width: 480px) {
-            padding: 0 0 0 80px;
+            padding: 0;
+        }
+
+        img {
+            cursor: pointer;
+        }
+
+        div {
+            font-weight: 300;
+            font-size: 16px;
+            font-family: var(--geo);
+            color: #2d3c38;
+            cursor: pointer;
         }
 
         .active {
@@ -859,15 +1070,15 @@ export default {
 }
 
 .company {
+    padding: 0 100px 100px;
     margin: 0 -100px;
-    padding: 0 0 330px 0;
-    background: #fff;
-    background-size: contain;
+    background: #fafafa;
     text-align: center;
     position: relative;
 
     @media (max-width: 1440px) {
         margin: 0 -80px;
+        padding: 0 80px 100px;
     }
 
     @media (max-width: 1024px) {
@@ -882,7 +1093,11 @@ export default {
 
     .sofa {
         @media (max-width: 1440px) {
-            width: 100%;
+            width: 800px;
+        }
+
+        @media (max-width: 1200px) {
+            width: 600px;
         }
 
         @media (max-width: 480px) {
@@ -891,60 +1106,18 @@ export default {
     }
 
     &-info {
-        position: absolute;
-        top: 185px;
-        left: 704px;
-        right: 704px;
+        display: flex;
+        gap: 79px;
+        justify-content: space-between;
 
-        @media (max-width: 1440px) {
-            top: 155px;
-            left: 544px;
-            right: 504px;
-        }
+        @media (max-width: 1440px) {}
 
-        @media (max-width: 1366px) {
-            left: 500px;
-        }
+        @media (max-width: 1366px) {}
 
-        @media (max-width: 1024px) {
-            left: 250px;
-            right: 250px;
-            top: 100px;
-        }
+        @media (max-width: 1024px) {}
 
         @media (max-width: 480px) {
-            position: relative;
-            top: 0;
-            left: 0;
-            right: 0;
-        }
-
-        h3 {
-            font-family: var(--geo);
-            font-weight: 400;
-            font-size: 32px;
-            line-height: 130%;
-            text-align: center;
-            color: #fafafa;
-            margin: 0 0 30px 0;
-            white-space: nowrap;
-
-            @media (max-width: 1440px) {
-                font-size: 1.67vw;
-            }
-
-            @media (max-width: 1024px) {
-                font-size: 24px;
-                margin: 0 0 25px 0;
-            }
-
-            @media (max-width: 480px) {
-                text-align: left;
-                font-size: 20px;
-                font-weight: 300;
-                color: #1e1e1e;
-                margin: 0 0 15px 0;
-            }
+            display: block;
         }
 
         &__text {
@@ -958,13 +1131,40 @@ export default {
                 margin: 0 0 25px 0;
             }
 
+            h3 {
+                font-family: var(--geo);
+                font-weight: 400;
+                font-size: 48px;
+                line-height: 130%;
+                text-align: left;
+                color: #2d3c38;
+                margin: 0;
+                white-space: nowrap;
+
+                @media (max-width: 1440px) {
+                    font-size: 1.67vw;
+                }
+
+                @media (max-width: 1024px) {
+                    font-size: 24px;
+                }
+
+                @media (max-width: 480px) {
+                    text-align: left;
+                    font-size: 20px;
+                    font-weight: 300;
+                    color: #1e1e1e;
+                    margin: 0 0 15px 0;
+                }
+            }
+
             span {
                 font-family: var(--geo);
                 font-weight: 300;
                 font-size: 20px;
                 line-height: 130%;
-                text-align: center;
-                color: #fafafa;
+                text-align: left;
+                color: #2d3c38;
 
                 @media (max-width: 1440px) {
                     font-size: 1.04vw;
@@ -980,49 +1180,58 @@ export default {
                     text-align: left;
                 }
             }
-        }
 
-        button {
+            .btn {
+                border-radius: 5px;
+                padding: 9px 108px;
+                background: #2d3c38;
+                font-family: var(--geo);
+                font-weight: 300;
+                font-size: 16px;
+                line-height: 130%;
+                color: #fff;
+                border: none;
+                white-space: nowrap;
+                cursor: pointer;
+                width: fit-content;
+
+                @media (max-width: 480px) {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .btn__mb {
+        display: none;
+
+        @media (max-width: 480px) {
+            display: block;
+            background: #2d3c38;
+            color: #fff;
+            width: 100%;
+            margin: 30px 0 0 0;
             border-radius: 5px;
             padding: 9px 108px;
-            background: #fafafa;
             font-family: var(--geo);
             font-weight: 300;
             font-size: 16px;
             line-height: 130%;
-            color: #1e1e1e;
             border: none;
             white-space: nowrap;
             cursor: pointer;
-
-            @media (max-width: 480px) {
-                background: #2d3c38;
-                color: #fff;
-                width: 100%;
-                margin: 15px 0 0 0;
-            }
         }
     }
 
     &-list {
         display: flex;
         gap: 20px;
-        position: absolute;
-        left: 100px;
-        right: 100px;
-        bottom: 150px;
+        padding: 60px 0 0 0;
 
-        @media (max-width: 1440px) {
-            left: 50px;
-            right: 50px;
-        }
+        @media (max-width: 1440px) {}
 
         @media (max-width: 1024px) {
             flex-direction: column;
-            position: relative;
-            bottom: auto;
-            left: 0;
-            right: 0;
             padding: 0 30px;
         }
 
@@ -1034,6 +1243,7 @@ export default {
             text-align: left;
             border-radius: 7px;
             background: #f2f2f2;
+            width: 100%;
 
             p {
                 font-family: var(--geo);
@@ -1051,65 +1261,90 @@ export default {
                 line-height: 130%;
                 color: #1e1e1e;
             }
-
-            a {
-                font-family: var(--geo);
-                font-weight: 300;
-                font-size: 16px;
-                line-height: 130%;
-                text-decoration: underline;
-                text-decoration-skip-ink: none;
-                color: #1e1e1e;
-                cursor: pointer;
-            }
         }
     }
 
     &-item-1 {
-        padding: 20px 111px 112px 20px;
-
-        @media (max-width: 1440px) {
-            padding: 20px 60px 60px 20px;
-        }
+        padding: 20px;
     }
 
     &-item-2 {
-        padding: 20px 59px 112px 20px;
-
-        @media (max-width: 1440px) {
-            padding: 20px 60px 60px 20px;
-        }
+        padding: 20px;
     }
 
     &-item-3 {
-        padding: 20px 43px 138px 20px;
-        white-space: nowrap;
-
-        @media (max-width: 1440px) {
-            padding: 20px 60px 60px 20px;
-            white-space: wrap;
-        }
+        padding: 20px;
     }
 
     &-item-4 {
-        padding: 20px 148px 138px 20px;
-        white-space: nowrap;
-
-        @media (max-width: 1440px) {
-            padding: 20px 60px 60px 20px;
-        }
+        padding: 20px;
     }
 
     &-item-5 {
-        padding: 20px 142px 20px 20px;
-        white-space: nowrap;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        padding: 20px;
+    }
+}
 
-        @media (max-width: 1440px) {
-            padding: 20px 60px 20px 20px;
+.category-item:hover .category-img {
+    transform: scale(1.1);
+}
+
+.furniture-item__img {
+    position: relative;
+
+    .navigation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+        bottom: 200px;
+        left: 15px;
+        right: 15px;
+
+        img {
+            width: 8px !important;
+            height: 17px !important;
+        }
+
+        @media (max-width: 480px) {
+            display: none;
         }
     }
+}
+
+.furniture-item__img::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+
+    @media (max-width: 480px) {
+        display: none;
+    }
+}
+
+.furniture-item__img:hover::after {
+    opacity: 1;
+}
+
+.furniture-item .navigation {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.furniture-item:hover .navigation {
+    opacity: 1;
+}
+
+.disabled {
+    pointer-events: none;
 }
 </style>

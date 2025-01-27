@@ -1,31 +1,31 @@
 <template>
     <div class="popup">
-        <div class="popup__block">
+        <div class="popup__block" :class="{ closing: isClosing }">
             <img src="@/assets/img/cancel.svg" alt="x" class="cancel" @click="closePopUp">
             <div class="text">
-                <p>Оставьте заявку</p>
-                <span>Если у вас есть вопросы или вы хотите <br> обсудить проект, оставьте заявку <br> и мы перезвоним
-                    вам в ближайшее время!</span>
+                <p>{{ $t('applyRequest') }}</p>
+                <span>{{ $t('applyRequestText') }}</span>
             </div>
 
             <div class="sent-request" v-if="sentRequest">
                 Ваша заявка отправлена!
             </div>
             <div class="form">
-                <input type="text" placeholder="Имя" v-model="userName">
+                <input type="text" :placeholder="$t('placeholderName')" v-model="userName">
                 <input type="text" placeholder="+7 777 777 77 77" v-model="userPhone" @focus="addPlus"
                     @keydown="restrictInput">
-                <button @click="createRequest" :class="{ active: agreement }" :disabled="!agreement">Отправить</button>
+                <button @click="createRequest" :class="{ active: agreement }" :disabled="!agreement">{{ $t('applyBtn')
+                    }}</button>
                 <div>
                     <input type="checkbox" @change="handleAgreement">
-                    <label>Я даю свое согласие на <span style=" text-decoration: underline;
-                    text-decoration-skip-ink: none;">обработку персональных данных</span></label>
+                    <!-- <label>Я даю свое согласие на <span style=" text-decoration: underline;
+                    text-decoration-skip-ink: none;">обработку персональных данных</span></label> -->
+                    <label>{{ $t('applyAgreement') }}</label>
                 </div>
             </div>
         </div>
 
-
-        <div class="popup__block-mb">
+        <div class="popup__block-mb" :class="{ closing: isClosing }">
             <div class="sent-request" v-if="sentRequest">
                 Ваша заявка отправлена!
             </div>
@@ -64,10 +64,8 @@ export default {
             userName: '',
             userPhone: '',
             furnitureId: this.$route.params.id,
+            isClosing: false,
         }
-    },
-    mounted() {
-        console.log(this.furnitureId);
     },
     methods: {
         addPlus() {
@@ -87,14 +85,19 @@ export default {
             this.agreement = !this.agreement;
         },
         closePopUp() {
-            this.$emit('close-popup');
+            this.isClosing = true;
+            // this.$emit('close-popup');
+            setTimeout(() => {
+                this.$emit('close-popup'); // Убираем компонент после завершения анимации
+                this.isClosing = false;
+            }, 600); // Время совпадает с длительностью анимации
         },
         createRequest() {
             if (this.userName != '' && this.userPhone.length > 2 && this.agreement) {
                 this.sentRequest = true;
             }
 
-            let url = 'http://45.156.25.213:8040/api/orders/';
+            let url = 'https://mebelinvest.kz/api/orders/';
 
             let requestData = {
                 name: this.userName,
@@ -152,13 +155,20 @@ export default {
     }
 
     .popup__block {
-        border-radius: 7px;
-        background: #fff url(@/assets/img/order.svg) no-repeat left;
+        border-radius: 20px;
+        box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+        background: #fff url(@/assets/img/newpop.svg) no-repeat left;
         background-size: contain;
         display: flex;
-        gap: 100px;
         position: relative;
         padding: 25px 40px 98px 25px;
+        opacity: 0;
+        transform: scale(0.8);
+        animation: fadeInScale 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+
+        &.closing {
+            animation: fadeOut 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
 
         @media (max-width: 480px) {
             display: none;
@@ -174,7 +184,10 @@ export default {
         .text {
             display: flex;
             flex-direction: column;
+            justify-content: center;
             gap: 15px;
+            flex: 1;
+            margin: 0 60px 0 0;
 
             p {
                 margin: 0;
@@ -199,7 +212,7 @@ export default {
             display: flex;
             flex-direction: column;
             gap: 20px;
-            flex-grow: 1;
+            flex: 1;
 
             input {
                 border-radius: 5px;
@@ -295,6 +308,11 @@ export default {
             background: #fff;
             border-radius: 20px 20px 0 0;
             position: relative;
+            animation: slide-up 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+
+            &.closing {
+                animation: slide-down 0.6s cubic-bezier(0.42, 0, 0.58, 1) forwards;
+            }
 
             .sent-request {
                 background: #38524b;
@@ -437,5 +455,57 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
     -moz-appearance: textfield;
+}
+
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slide-up {
+    0% {
+        transform: translateY(100%);
+    }
+
+    80% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+@keyframes slide-down {
+    0% {
+        transform: translateY(0);
+    }
+
+    70% {
+        transform: translateY(50%);
+    }
+
+    100% {
+        transform: translateY(100%);
+    }
 }
 </style>

@@ -66,6 +66,7 @@ export default {
     font-size: 14px;
     line-height: 130%;
     color: #1e1e1e;
+    text-align: left;
 
     display: flex;
     gap: 15px;
